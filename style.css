@@ -138,3 +138,34 @@ dialog img{max-width:min(90vw,540px);max-height:86vh;width:auto}
 #servicos .valor{color:#6b4e16;font-weight:500}
 #servicos .card-img,#servicos .card-img img{opacity:1;filter:none;-webkit-filter:none}
 #servicos .card-img::after,#servicos .card-img::before{content:none;display:none}
+
+/* pedido de agendamento na Vily */
+.fp-passo{font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#8a6420;margin:0 0 .35rem}
+.fp-form{display:grid;gap:.55rem}
+.fp-form input[type=text],.fp-form input[type=date],.fp-form input[type=time],.fp-form textarea{
+  font:inherit;font-size:1rem;width:100%;padding:.65rem .8rem;border:1px solid #e6dbbd;border-radius:12px;background:#fff;color:#16161a;-webkit-appearance:none;appearance:none
+}
+.fp-form input:focus,.fp-form textarea:focus{outline:2px solid var(--o2);outline-offset:1px}
+.fp-form textarea{min-height:64px;resize:vertical;line-height:1.45}
+.fp-form label{font-size:.78rem;color:#3a3a40;text-align:left}
+.fp-aviso,.fp-erro{font-size:.78rem;line-height:1.4;margin:0;text-align:left}
+.fp-aviso{color:#5a5a62}
+.fp-erro{color:#8a2c2c}
+.fp-acoes{display:grid;grid-template-columns:1fr 1.2fr;gap:.4rem}
+.fp-botoes button.fp-ok,.fp-botoes a.wa-envio{background-color:#c9a24a;background-image:var(--foil);background-size:200% 100%;color:#2c2410;border:0;text-align:center;font-weight:600;min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.fp-periodos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.35rem}
+.fp-periodos button{text-align:center;min-height:42px}
+.fp-periodos button[aria-pressed=true],.fp-botoes button.fp-sel{background-color:#c9a24a;background-image:var(--foil);background-size:200% 100%;border-color:transparent;color:#2c2410;font-weight:600}
+.fp-resumo{background:#fff;border:1px solid #c4a056;border-radius:14px;padding:.7rem .85rem;text-align:left;box-shadow:0 6px 16px rgba(32,32,40,.08)}
+.fp-resumo dl{margin:0}
+.fp-resumo dt{color:#8a6420;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.32rem;font-weight:600}
+.fp-resumo dt:first-child{margin-top:0}
+.fp-resumo dd{margin:0;color:#16161a;font-size:.88rem}
+.fp-nota{font-size:.76rem;line-height:1.4;color:#3a3a40;margin:.25rem 0 0;text-align:left}
+.fp-envio-fixo{position:sticky;bottom:0;margin-top:.2rem;padding-top:.55rem;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%);display:grid;gap:.4rem}
+.fada-painel.pedido-aberto{width:340px;display:flex;flex-direction:column}
+.fada-painel.pedido-aberto #fada-txt{flex:0 0 auto}
+.fada-painel.pedido-aberto .fp-botoes{overflow:auto;min-height:0}
+@media(max-width:900px){
+  .fada-painel.pedido-aberto{position:fixed;left:10px;right:10px;bottom:70px;width:auto;max-width:none;margin:0;max-height:calc(100vh - 82px);overflow:hidden;z-index:51}
+}

@@ -5,7 +5,7 @@ var WA="5511942694714", WA_JEN="5511995965175";               // Rafaela Vilela 
 var HORARIO="Terça a sábado: somente com hora marcada. Domingo e segunda: fechado", ENDERECO="R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 18120-000", MAPS="https://www.google.com/maps/search/?api=1&query=R.%20Padre%20Mar%C3%A7al%2C%20112%20-%20Centro%2C%20S%C3%A3o%20Roque%20-%20SP%2C%2018120-000%2C%20Brasil";
 var reduz=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function wa(m,n){n=n||WA;return n?"https://wa.me/"+n+"?text="+encodeURIComponent(m):"#agendar";}
-document.querySelectorAll(".js-wa").forEach(function(a){a.href=wa(a.dataset.msg,a.dataset.quem==="jen"?WA_JEN:WA);if(WA){a.target="_blank";a.rel="noopener"}});
+document.querySelectorAll(".js-wa").forEach(function(a){a.href="#fada-agendar"});
 /* menu */
 var mb=document.querySelector(".menu-btn"),ul=document.getElementById("menu");
 mb.onclick=function(){var o=ul.classList.toggle("aberto");mb.setAttribute("aria-expanded",o)};
@@ -128,25 +128,145 @@ var btn=document.getElementById("fada-btn"),pn=document.getElementById("fada-pai
 var M={agendar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar um horário, por favor.\nServiço:\nDia/horário de preferência:",unhas:"Olá, Rafaela! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar unhas, por favor.\nDia/horário de preferência:",make:"Olá, Rafaela! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar maquiagem, por favor.\nÉ para evento? Qual:\nDia/horário:",sobr:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar design de sobrancelha, por favor.\nDia/horário de preferência:",cilios:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar cílios (lash), por favor.\nDia/horário de preferência:",trancas:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar tranças, por favor.\nModelo/tamanho:\nDia/horário de preferência:",preco:"Olá, Studio Vilela! Tudo bem? Gostaria de saber os preços de:",horario:"Olá, Studio Vilela! Tudo bem? Gostaria de marcar um horário. Quais dias vocês têm disponíveis?",onde:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar uma visita.",eventos:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de saber sobre atendimento para casamento/evento, por favor.\nData do evento:\nCidade/local:\nServiços desejados:\nQuantas pessoas:",falar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de mais informações, por favor."};
 var V={menu:["Como posso te ajudar? 🦋",[["📅 Agendar horário","agendar"],["💅 Serviços","servicos"],["💬 Valores e pagamento","preco"],["⏱️ Duração","duracao"],["💍 Eventos e casamentos","eventos"],["🕘 Horário","horario"],["📍 Onde fica","onde"],["📲 Falar com o studio","falar"]]],
 servicos:["Qual serviço você quer?",[["💅 Unhas","unhas"],["💄 Maquiagem","make"],["✨ Sobrancelha","sobr"],["👁️ Cílios (lash)","cilios"],["💫 Tranças","trancas"],["← Voltar","menu"]]],
-agendar:["Escolha com quem falar. Vou abrir o WhatsApp com a mensagem pronta, é só apertar enviar.","agendar"],unhas:["Unhas lindas com a Rafaela!","unhas"],make:["Make pra arrasar com a Rafaela!","make"],sobr:["Sobrancelha perfeita pro seu olhar! Quem cuida é a Jennyfer.","sobr"],cilios:["Cílios lindos com a Jennyfer!","cilios"],trancas:["Tranças com a Jennyfer!","trancas"],
-preco:["Valores sob consulta com a profissional. O pagamento é em dinheiro. Com quem você quer falar?","preco"],duracao:["A duração varia de 20 minutos a 3h30, ou mais, dependendo do procedimento. Quer agendar?","agendar"],eventos:["Atendemos casamentos e eventos com hora marcada. Confirme antes com as profissionais. Com quem você quer falar?","eventos"],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO.replace("R. ","Rua ")+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Com quem você quer falar?","falar"]};
+agendar:["Vamos montar o seu pedido de agendamento.","pedido"],unhas:["Unhas com a Rafaela. O horário e o valor ficam por confirmação dela. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","pedido-unhas"],["← Voltar","servicos"]]],make:["Maquiagem com a Rafaela. O horário e o valor ficam por confirmação dela. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","pedido-make"],["← Voltar","servicos"]]],sobr:["Sobrancelha com a Jennyfer. O horário e o valor ficam por confirmação dela. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","pedido-sobr"],["← Voltar","servicos"]]],cilios:["Cílios com a Jennyfer. O horário e o valor ficam por confirmação dela. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","pedido-cilios"],["← Voltar","servicos"]]],trancas:["Tranças com a Jennyfer. O horário e o valor ficam por confirmação dela. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","pedido-trancas"],["← Voltar","servicos"]]],
+preco:["Valores sob consulta com a profissional. O pagamento é em dinheiro. Com quem você quer falar?","preco"],duracao:["A duração varia de 20 minutos a 3h30, ou mais, dependendo do procedimento. Quer fazer um pedido de agendamento?",[["📅 Pedir agendamento","agendar"],["← Voltar","menu"]]],eventos:["Atendemos casamentos e eventos com hora marcada. O horário e o valor ficam por confirmação da profissional. Quer fazer um pedido?",[["💍 Pedir para casamento/evento","pedido-evento"],["← Voltar","menu"]]],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO.replace("R. ","Rua ")+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Com quem você quer falar?","falar"]};
 var QUEM={unhas:"raf",make:"raf",sobr:"jen",cilios:"jen",trancas:"jen"};
 function link(t,m,n){return '<a class="wa" href="'+wa(m,n)+'" target="_blank" rel="noopener">'+t+'</a>'}
 function links(k,m){var q=QUEM[k];if(q==="raf")return link("WhatsApp da Rafaela",m,WA);if(q==="jen")return link("WhatsApp da Jennyfer",m,WA_JEN);
 return link("Rafaela · unhas e maquiagem",m.replace("Olá, Studio Vilela!","Olá, Rafaela!"),WA)+link("Jennyfer · sobrancelha, cílios e tranças",m.replace("Olá, Studio Vilela!","Olá, Jennyfer!"),WA_JEN)}
 var GUIA={servicos:"Toque em Unhas ou Maquiagem para falar com a Rafaela. Toque em Sobrancelha, Cílios ou Tranças para falar com a Jennyfer."};
+
+/* Pedido de agendamento, passo a passo, na conversa da Vily. É um pedido: a profissional confirma horário e valor. */
+var SERVICOS_PED=[
+ {id:"unhas",nome:"Unhas",quem:"raf"},
+ {id:"make",nome:"Maquiagem",quem:"raf"},
+ {id:"sobr",nome:"Sobrancelha",quem:"jen"},
+ {id:"cilios",nome:"Cílios",quem:"jen"},
+ {id:"trancas",nome:"Tranças",quem:"jen"},
+ {id:"evento",nome:"Casamento/Evento",quem:null}
+];
+var ped=null,pedPasso="servico";
+function servicoPorId(id){for(var i=0;i<SERVICOS_PED.length;i++)if(SERVICOS_PED[i].id===id)return SERVICOS_PED[i];return null}
+function hojeZero(){var d=new Date();d.setHours(0,0,0,0);return d}
+function isoLocal(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function parseISO(v){var p=String(v||"").split("-");if(p.length!==3)return null;var d=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(d)?null:d}
+function proxAberto(d){d=new Date(d.getTime());while(d.getDay()===0||d.getDay()===1)d.setDate(d.getDate()+1);return d}
+function minData(){return isoLocal(proxAberto(hojeZero()))}
+function maxData(){var d=hojeZero();d.setMonth(d.getMonth()+8);return isoLocal(d)}
+function fmtData(v){var d=parseISO(v);if(!d)return v;return d.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}
+function fmtHora(v){if(!v)return "";var p=v.split(":");return p[0]+"h"+(p[1]&&p[1]!=="00"?p[1]:"")}
+function quandoPed(){var p=ped.periodo||"",h=fmtHora(ped.hora);if(p&&h)return p+" · "+h;return p||h||""}
+function errData(v){var d=parseISO(v);if(!d)return "Escolha um dia, por favor.";if(d<hojeZero())return "Escolha um dia a partir de hoje, de terça a sábado.";if(d.getDay()===0||d.getDay()===1)return "O studio fecha domingo e segunda. Escolha um dia de terça a sábado, por favor.";return ""}
+function profNome(){return ped.quem==="jen"?"Jennyfer":"Rafaela"}
+function msgPedido(){
+ var linhas=["Olá, "+profNome()+"! Tudo bem?","","Meu nome é "+ped.nome+". Vim pelo site do Studio Vilela e gostaria de fazer um pedido de agendamento.","","Serviço: "+ped.servico.nome,"Dia de preferência: "+fmtData(ped.data),"Período/horário de preferência: "+quandoPed()];
+ if(ped.obs)linhas.push("Observação: "+ped.obs);
+ linhas.push("","É apenas um pedido de agendamento: peço que você confirme se esse dia e horário estão disponíveis, e também o valor, por favor. Obrigada!");
+ return linhas.join("\n");
+}
+function listaServicosPed(){return SERVICOS_PED.filter(function(s){if(ped.filtroQuem==="raf")return s.quem==="raf"||!s.quem;if(ped.filtroQuem==="jen")return s.quem==="jen"||!s.quem;return true})}
+function iniciarPedido(pre){
+ ped={servico:null,nome:"",data:"",periodo:"",hora:"",obs:"",quem:null,filtroQuem:null};
+ pre=pre||{};
+ if(pre.servico){var s=typeof pre.servico==="string"?servicoPorId(pre.servico):pre.servico;if(s){ped.servico=s;if(s.quem)ped.quem=s.quem}}
+ if(pre.quem&&!ped.servico)ped.filtroQuem=pre.quem;
+ if(pre.quem&&ped.servico&&!ped.servico.quem)ped.quem=pre.quem;
+ pn.hidden=false;btn.setAttribute("aria-expanded","true");pn.classList.add("pedido-aberto");
+ if(!ped.servico)pedPasso="servico";
+ else if(!ped.quem)pedPasso="quem";
+ else pedPasso="nome";
+ renderPedido();
+}
+function voltarPedido(){
+ if(pedPasso==="servico"){pn.classList.remove("pedido-aberto");show("menu");return}
+ var ordem=["servico","quem","nome","data","periodo","obs","resumo"],i=ordem.indexOf(pedPasso);
+ if(pedPasso==="nome"&&ped.servico&&ped.servico.quem)pedPasso="servico";
+ else if(i>0)pedPasso=ordem[i-1];
+ if(pedPasso==="quem"&&ped.servico&&ped.servico.quem)pedPasso="servico";
+ renderPedido();
+}
+function txtPassoPedido(){
+ if(pedPasso==="servico")return ped.filtroQuem==="raf"?"Qual serviço da Rafaela você quer pedir? Também pode ser casamento ou evento.":ped.filtroQuem==="jen"?"Qual serviço da Jennyfer você quer pedir? Também pode ser casamento ou evento.":"Qual serviço você quer pedir?";
+ if(pedPasso==="quem")return "Para casamento ou evento, com quem você prefere falar: Rafaela ou Jennyfer?";
+ if(pedPasso==="nome")return "Qual é o seu nome?";
+ if(pedPasso==="data")return "Qual dia você prefere? Atendemos de terça a sábado; domingo e segunda o studio está fechado.";
+ if(pedPasso==="periodo")return "Prefere manhã, tarde ou noite? Se quiser, pode indicar também um horário.";
+ if(pedPasso==="obs")return "Quer deixar algum recado? É opcional.";
+ return "Confira o pedido e envie no WhatsApp da "+profNome()+". É só um pedido: ela confirma o horário e o valor.";
+}
+function nPasso(){var s=["servico","quem","nome","data","periodo","obs","resumo"];if(ped.servico&&ped.servico.quem)s=s.filter(function(x){return x!=="quem"});return {i:s.indexOf(pedPasso)+1,n:s.length}}
+function renderPedido(){
+ var np=nPasso(),fala=txtPassoPedido();
+ txt.innerHTML="";
+ var passo=document.createElement("p");passo.className="fp-passo";passo.textContent="Pedido "+np.i+" de "+np.n;txt.appendChild(passo);
+ var p=document.createElement("span");p.textContent=fala;txt.appendChild(p);
+ bx.innerHTML="";
+ if(pedPasso==="servico"){
+  listaServicosPed().forEach(function(s){var b=document.createElement("button");b.type="button";b.textContent=s.nome;if(ped.servico&&ped.servico.id===s.id)b.className="fp-sel";b.addEventListener("click",function(){ped.servico=s;ped.quem=s.quem||null;pedPasso=s.quem?"nome":"quem";renderPedido()});bx.appendChild(b)});
+  var back=document.createElement("button");back.type="button";back.textContent="← Voltar";back.addEventListener("click",voltarPedido);bx.appendChild(back);
+ }else if(pedPasso==="quem"){
+  [["raf","Rafaela · unhas e maquiagem"],["jen","Jennyfer · sobrancelha, cílios e tranças"]].forEach(function(q){var b=document.createElement("button");b.type="button";b.textContent=q[1];if(ped.quem===q[0])b.className="fp-sel";b.addEventListener("click",function(){ped.quem=q[0];pedPasso="nome";renderPedido()});bx.appendChild(b)});
+  var back=document.createElement("button");back.type="button";back.textContent="← Voltar";back.addEventListener("click",voltarPedido);bx.appendChild(back);
+ }else if(pedPasso==="nome"){
+  bx.appendChild(formPedido('<label for="ped-nome">Seu nome</label><input id="ped-nome" name="nome" type="text" autocomplete="name" enterkeyhint="next" required minlength="2" maxlength="80" placeholder="Como podemos te chamar?">',function(fd,err){var n=String(fd.get("nome")||"").replace(/\s+/g," ").trim();if(n.length<2){err("Escreva o seu nome, por favor.");return}ped.nome=n;pedPasso="data";renderPedido()}));
+ }else if(pedPasso==="data"){
+  bx.appendChild(formPedido('<label for="ped-data">Dia de preferência</label><input id="ped-data" name="data" type="date" required min="'+minData()+'" max="'+maxData()+'"><p class="fp-aviso">Terça a sábado. Domingo e segunda o studio está fechado.</p><p class="fp-erro" hidden></p>',function(fd,err){var v=fd.get("data"),e=errData(v);if(e){err(e);return}ped.data=v;pedPasso="periodo";renderPedido()},function(form){var inp=form.querySelector("#ped-data");inp.value=ped.data||minData();inp.addEventListener("change",function(){var e=errData(inp.value),box=form.querySelector(".fp-erro");if(e){box.hidden=false;box.textContent=e;inp.value=ped.data||minData()}else{box.hidden=true}})}));
+ }else if(pedPasso==="periodo"){
+  var wrap=document.createElement("div");wrap.className="fp-form";
+  var labs=document.createElement("p");labs.className="fp-aviso";labs.textContent="Escolha um período, um horário, ou os dois.";wrap.appendChild(labs);
+  var per=document.createElement("div");per.className="fp-periodos";
+  ["Manhã","Tarde","Noite"].forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed",ped.periodo===n?"true":"false");b.addEventListener("click",function(){ped.periodo=ped.periodo===n?"":n;per.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x.textContent===ped.periodo?"true":"false")})});per.appendChild(b)});
+  wrap.appendChild(per);
+  var lab=document.createElement("label");lab.htmlFor="ped-hora";lab.textContent="Horário (opcional)";wrap.appendChild(lab);
+  var hora=document.createElement("input");hora.id="ped-hora";hora.type="time";hora.value=ped.hora||"";wrap.appendChild(hora);
+  var er=document.createElement("p");er.className="fp-erro";er.hidden=true;wrap.appendChild(er);
+  wrap.appendChild(acoesPedido(function(){ped.hora=hora.value||"";if(!ped.periodo&&!ped.hora){er.hidden=false;er.textContent="Escolha manhã, tarde, noite, ou um horário, por favor.";return}pedPasso="obs";renderPedido()}));
+  bx.appendChild(wrap);
+ }else if(pedPasso==="obs"){
+  bx.appendChild(formPedido('<label for="ped-obs">Recado (opcional)</label><textarea id="ped-obs" name="obs" maxlength="400" placeholder="Algum detalhe que a profissional deva saber?"></textarea>',function(fd){ped.obs=String(fd.get("obs")||"").replace(/\s+/g," ").trim();pedPasso="resumo";renderPedido()},function(form){if(ped.obs)form.querySelector("#ped-obs").value=ped.obs}, "Pular e ver resumo"));
+ }else if(pedPasso==="resumo"){
+  var box=document.createElement("div");box.className="fp-resumo";
+  box.innerHTML="<dl><dt>Serviço</dt><dd></dd><dt>Nome</dt><dd></dd><dt>Dia</dt><dd></dd><dt>Período/horário</dt><dd></dd>"+(ped.obs?"<dt>Recado</dt><dd></dd>":"")+"<dt>Profissional</dt><dd></dd></dl><p class=\"fp-nota\">Isto é um pedido de agendamento. A profissional confirma o horário e o valor.</p>";
+  var dds=box.querySelectorAll("dd"),vals=[ped.servico.nome,ped.nome,fmtData(ped.data),quandoPed()].concat(ped.obs?[ped.obs]:[]).concat([profNome()+" Vilela"]);
+  dds.forEach(function(dd,i){dd.textContent=vals[i]});
+  bx.appendChild(box);
+  var fixo=document.createElement("div");fixo.className="fp-envio-fixo";
+  var env=document.createElement("a");env.className="wa wa-envio";env.target="_blank";env.rel="noopener";env.href=wa(msgPedido(),ped.quem==="jen"?WA_JEN:WA);env.textContent="Enviar pedido no WhatsApp";
+  var back=document.createElement("button");back.type="button";back.textContent="← Voltar";back.addEventListener("click",voltarPedido);
+  fixo.appendChild(env);fixo.appendChild(back);bx.appendChild(fixo);
+ }
+ if(on)falar(fala,true);
+ var foco=bx.querySelector("input,textarea,button,a");if(foco)try{foco.focus({preventScroll:true})}catch(e){}
+}
+function acoesPedido(ok,okLabel){
+ var nav=document.createElement("div");nav.className="fp-acoes";
+ var back=document.createElement("button");back.type="button";back.textContent="← Voltar";back.addEventListener("click",voltarPedido);
+ var go=document.createElement("button");go.type=ok?"button":"submit";go.className="fp-ok";go.textContent=okLabel||"Continuar";
+ nav.appendChild(back);nav.appendChild(go);
+ if(typeof ok==="function")go.addEventListener("click",function(e){e.preventDefault();ok()});
+ return nav;
+}
+function formPedido(html,onOk,onReady,okLabel){
+ var form=document.createElement("form");form.className="fp-form";form.noValidate=true;form.innerHTML=html;
+ var nav=acoesPedido(null,okLabel);form.appendChild(nav);
+ form.addEventListener("submit",function(e){e.preventDefault();onOk(new FormData(form),function(msg){var box=form.querySelector(".fp-erro");if(!box){box=document.createElement("p");box.className="fp-erro";form.insertBefore(box,nav)}box.hidden=false;box.textContent=msg})});
+ if(onReady)onReady(form);
+ return form;
+}
+
 function falaVily(k,v,prim){var t=(prim?"Oi! Eu sou a Vily. ":"")+v[0]+" ";
  if(Array.isArray(v[1])){t+=(GUIA[k]||"")+" Opções: "+v[1].filter(function(b){return b[1]!=="menu"}).map(function(b){return limpa(b[0])}).join(", ")+". "+(k==="menu"?"Toque em uma opção. Por exemplo, toque em Serviços para conhecer unhas, maquiagem, sobrancelha, cílios e tranças.":"Ou toque em Voltar.")}
  else{var q=QUEM[v[1]];t+=(k==="onde"?" Toque em Como chegar para abrir o mapa. ":"")+(q==="raf"?"Toque em WhatsApp da Rafaela.":q==="jen"?"Toque em WhatsApp da Jennyfer.":"Toque em Rafaela, para unhas e maquiagem, ou em Jennyfer, para sobrancelha, cílios e tranças.")+" O WhatsApp abre com a mensagem pronta; é só tocar em enviar. Ou toque em Voltar."}
  falar(t,true,k==="menu"?(prim?"vily-menu":"vily-menu-volta"):"vily-"+k)}
-function show(k,prim){var v=V[k];txt.textContent=v[0];falaVily(k,v,prim);
+function show(k,prim){if(k==="agendar"||k==="pedido"){iniciarPedido();return}if(k.indexOf("pedido-")===0){iniciarPedido({servico:k.slice(7)});return}pn.classList.remove("pedido-aberto");var v=V[k];if(!v){iniciarPedido();return}txt.textContent=v[0];falaVily(k,v,prim);
 if(Array.isArray(v[1]))bx.innerHTML=v[1].map(function(b){return '<button data-k="'+b[1]+'">'+b[0]+'</button>'}).join("");
 else bx.innerHTML=(k==='onde'?'<a class="wa" href="'+MAPS+'" target="_blank" rel="noopener">📍 Como chegar</a>':'')+links(v[1],M[v[1]])+'<button data-k="menu">← Voltar</button>'}
 bx.onclick=function(e){var b=e.target.closest("[data-k]");if(b){ult=b;show(b.dataset.k)}};
-function abrir(o){pn.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){show("menu",true);pn.querySelector("button").focus({preventScroll:true})}else{btn.focus({preventScroll:true});if(on)falar("Menu da Vily fechado.",false,"vily-fechado")}}
+function abrir(o){pn.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){show("menu",true);var f=pn.querySelector("button,input,a");if(f)f.focus({preventScroll:true})}else{pn.classList.remove("pedido-aberto");btn.focus({preventScroll:true});if(on)falar("Menu da Vily fechado.",false,"vily-fechado")}}
 btn.onclick=function(){abrir(pn.hidden)};document.getElementById("fada-fechar").onclick=function(){abrir(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!pn.hidden)abrir(false)});
-if(location.hash==="#fada")abrir(true);if(location.hash==="#fada-onde"){abrir(true);show("onde")}if(location.hash==="#fada-horario"){abrir(true);show("horario")}if(location.hash==="#fada-agendar"){abrir(true);show("agendar")}var hv=location.hash.match(/^#fada-v-(\w+)$/);if(hv&&V[hv[1]]){abrir(true);show(hv[1])}
+if(location.hash==="#fada")abrir(true);if(location.hash==="#fada-onde"){abrir(true);show("onde")}if(location.hash==="#fada-horario"){abrir(true);show("horario")}if(location.hash==="#fada-agendar")iniciarPedido();var hv=location.hash.match(/^#fada-v-(\w+)$/);if(hv&&V[hv[1]]){abrir(true);show(hv[1])}
+document.querySelectorAll(".js-wa").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();iniciarPedido({servico:a.dataset.servico||"",quem:a.dataset.quem==="jen"?"jen":a.dataset.quem==="raf"?"raf":null})})});
 
 /* borboletas suaves nas seções claras (não no hero, nem no agendar escuro, nem no rodapé).
    Sempre inicializa — inclusive com prefers-reduced-motion (ficam quase paradas, sem bater asa). */
