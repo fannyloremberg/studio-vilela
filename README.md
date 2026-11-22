@@ -10,7 +10,7 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 ## Recursos
 - Hero com vídeo mudo em loop (`video/hero.mp4`, 14 s, 1280×720, ~0,7 MB) + pôster, véu cinza/dourado e brilhos dourados (canvas).
 - Assistente **Vily** (fadinha borboleta, por regras, sem IA): agendar, serviços, valores (sob consulta), horário, onde fica, falar com o studio.
-- **Ativar a fala**: lê textos em voz alta (Web Speech API do navegador, voz pt-BR), ao passar o mouse, focar ou clicar; a Vily fala as respostas. Desligado por padrão, lembra a escolha (`localStorage`). Sem serviços externos.
+- **Ativar a fala**: guia por voz no estilo da COMPSISTEM (Web Speech API do navegador, voz feminina pt-BR). Ao ligar, a Vily cumprimenta e explica a barra (Desativar, Ouvir de novo, Anterior, Próximo). O guia percorre o site passo a passo, destaca a seção e lê o texto. A Vily também lê o menu, as opções e as respostas, e orienta a escolha entre Rafaela e Jennyfer. Continua lendo ao tocar, focar ou (no computador, com um pequeno atraso) passar o mouse. Desligado por padrão, lembra a escolha (`localStorage`). Sem serviços externos.
 - Galeria com lightbox, FAQ, depoimentos (modelo), faixa de chamada, animações de entrada.
 - `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos e sem animações.
 
