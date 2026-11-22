@@ -2,7 +2,7 @@
    Troque WA pelo número real (só dígitos, 55 + DDD + número). */
 (function(){
 var WA="5511942694714", WA_JEN="5511995965175";               // Rafaela Vilela (11) 94269-4714: unhas e maquiagem · Jennyfer Vilela (11) 99596-5175: sobrancelha, cílios e tranças
-var HORARIO="Terça a sábado: somente com hora marcada. Domingo e segunda: fechado", ENDERECO="Rua Rui Ribeiro Lopes, 91, Centro, São Roque - SP, CEP 18130-210", MAPS="https://www.google.com/maps/search/?api=1&query=Rua%20Rui%20Ribeiro%20Lopes%2C%2091%2C%20Centro%2C%20S%C3%A3o%20Roque%20-%20SP%2C%2018130-210%2C%20Brasil";
+var HORARIO="Terça a sábado: somente com hora marcada. Domingo e segunda: fechado", ENDERECO="R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 18120-000", MAPS="https://www.google.com/maps/search/?api=1&query=R.%20Padre%20Mar%C3%A7al%2C%20112%20-%20Centro%2C%20S%C3%A3o%20Roque%20-%20SP%2C%2018120-000%2C%20Brasil";
 var reduz=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function wa(m,n){n=n||WA;return n?"https://wa.me/"+n+"?text="+encodeURIComponent(m):"#agendar";}
 document.querySelectorAll(".js-wa").forEach(function(a){a.href=wa(a.dataset.msg,a.dataset.quem==="jen"?WA_JEN:WA);if(WA){a.target="_blank";a.rel="noopener"}});
@@ -46,7 +46,7 @@ var M={agendar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agend
 var V={menu:["Como posso te ajudar? 🦋",[["📅 Agendar horário","agendar"],["💅 Serviços","servicos"],["💬 Preços e dúvidas","preco"],["🕘 Horário","horario"],["📍 Onde fica","onde"],["📲 Falar com o studio","falar"]]],
 servicos:["Qual serviço você quer?",[["💅 Unhas","unhas"],["💄 Maquiagem","make"],["✨ Sobrancelha","sobr"],["👁️ Cílios (lash)","cilios"],["💫 Tranças","trancas"],["← Voltar","menu"]]],
 agendar:["Escolha com quem falar. Vou abrir o WhatsApp com a mensagem pronta, é só apertar enviar.","agendar"],unhas:["Unhas lindas com a Rafaela!","unhas"],make:["Make pra arrasar com a Rafaela!","make"],sobr:["Sobrancelha perfeita pro seu olhar! Quem cuida é a Jennyfer.","sobr"],cilios:["Cílios lindos com a Jennyfer!","cilios"],trancas:["Tranças com a Jennyfer!","trancas"],
-preco:["Os preços variam por serviço. Pergunte direto pro studio:","preco"],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Com quem você quer falar?","falar"]};
+preco:["Os preços variam por serviço. Pergunte direto pro studio:","preco"],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO.replace("R. ","Rua ")+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Com quem você quer falar?","falar"]};
 var QUEM={unhas:"raf",make:"raf",sobr:"jen",cilios:"jen",trancas:"jen"};
 function link(t,m,n){return '<a class="wa" href="'+wa(m,n)+'" target="_blank" rel="noopener">'+t+'</a>'}
 function links(k,m){var q=QUEM[k];if(q==="raf")return link("WhatsApp da Rafaela",m,WA);if(q==="jen")return link("WhatsApp da Jennyfer",m,WA_JEN);
