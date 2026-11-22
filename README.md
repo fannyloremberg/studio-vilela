@@ -19,7 +19,9 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 - `logo-foto.jpg`: foto do logo do studio (enviada pela família).
 
 ## Créditos (Pexels, licença livre — https://www.pexels.com/license/)
-Fotos: Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Donviour Photography (14883868, tranças), Shantanu Kumar (36207029), Moo Lens (34373402), Valdans Media (30589139), Jimmy Elizarraras (20775979), Yan Krukau (7315472, galeria).
+Fotos: Kaboompics (4963818, unhas — card de serviço), Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Shantanu Kumar (36207029), Moo Lens (34373402, galeria), Valdans Media (30589139), Jimmy Elizarraras (20775979), Yan Krukau (7315472, galeria).
 Vídeos do hero: Artem Podrez — https://www.pexels.com/video/4783390/ ; Pavel Danilyuk — https://www.pexels.com/video/4855852/ ; Kaboompics — https://www.pexels.com/video/7311589/ . Recortados, sem áudio e sem texto na tela.
 
 Horário: terça a sábado somente com hora marcada; domingo e segunda fechado.
+
+Card de Tranças (`img/trancas-box.jpg`): imagem ilustrativa original gerada para este projeto (não é foto de cliente).
