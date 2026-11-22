@@ -101,3 +101,5 @@ dialog img{max-width:min(90vw,540px);max-height:86vh;width:auto}
 .voz-bar p{grid-column:1/-1;margin:0;font-size:.82rem;line-height:1.45;color:#eee}
 .guia-atual{outline:3px solid var(--o2)!important;outline-offset:4px;border-radius:10px;box-shadow:0 0 0 8px rgba(214,178,94,.18)}
 @media(max-width:700px){.voz-in{grid-template-columns:1fr;padding:.5rem .75rem;gap:.4rem}.voz-bar button{min-height:42px;font-size:.82rem}.voz-bar p{font-size:.78rem}}
+
+.voz-aviso{grid-column:1/-1;margin:0;font-size:.8rem;line-height:1.4;color:#f6e3a1}

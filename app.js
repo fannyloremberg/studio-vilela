@@ -28,20 +28,43 @@ if(borb&&!reduz){setInterval(function(){if(document.hidden)return;var f=document
 var lb=document.getElementById("lightbox"),lbi=lb.querySelector("img");
 document.querySelectorAll(".g,.g2").forEach(function(g){g.onclick=function(){var im=g.querySelector("img");lbi.src=g.dataset.src;lbi.alt=im.alt;lb.showModal();falar("Foto: "+im.alt)}});
 lb.querySelector(".lb-x").onclick=function(){lb.close()};lb.onclick=function(e){if(e.target===lb)lb.close()};
-/* fala — guia por voz no estilo da COMPSISTEM (Web Speech API do navegador, sem serviços externos) */
-var fb=document.getElementById("fala-btn"),bar=document.getElementById("voz-bar"),vtxt=document.getElementById("voz-txt"),synth=window.speechSynthesis,on=false,voz=null,ultimaFala="",passo=-1,ult=null;
+/* fala — linhas fixas em MP3 (voz neural, como a COMPSISTEM) + Web Speech só como reserva para texto dinâmico */
+var fb=document.getElementById("fala-btn"),bar=document.getElementById("voz-bar"),vtxt=document.getElementById("voz-txt"),aviso=document.getElementById("voz-aviso");
+var synth=window.speechSynthesis,on=false,voz=null,ultimaFala="",ultimaChave=null,passo=-1,ult=null,player=null,somTm,falaTm,keepTm;
+var isDeskChrome=/Chrome\//.test(navigator.userAgent)&&!/Edg\/|OPR\/|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
 var PREF=[/francisca/i,/thalita/i,/luciana/i,/google portugu[eê]s do brasil/i,/maria/i,/vit[oó]ria/i,/fernanda/i,/raquel/i,/camila/i,/joana/i,/leila/i,/feminin|female|mulher/i];
 var MASC=/daniel|ricardo|ant[oô]nio|felipe|f[aá]bio|j[uú]lio|humberto|donato|val[eé]rio|nicolau|macerio|\bmale\b/i;
 function pegaVoz(){if(!synth)return null;var vs=synth.getVoices()||[];if(!vs.length)return null;
  var br=vs.filter(function(v){return /pt[-_]BR/i.test(v.lang)});var pt=br.length?br:vs.filter(function(v){return /^pt/i.test(v.lang)});if(!pt.length)return null;
- for(var i=0;i<PREF.length;i++){for(var k=0;k<pt.length;k++){if(PREF[i].test(pt[k].name)&&!MASC.test(pt[k].name)){voz=pt[k];try{document.documentElement.dataset.voz=voz.name}catch(e){}return voz}}}
- for(k=0;k<pt.length;k++){if(!MASC.test(pt[k].name)){voz=pt[k];break}}if(!voz)voz=pt[0];try{if(voz)document.documentElement.dataset.voz=voz.name}catch(e){}return voz}
-if(synth){pegaVoz();if("onvoiceschanged" in synth)synth.onvoiceschanged=pegaVoz;else synth.addEventListener&&synth.addEventListener("voiceschanged",pegaVoz);setTimeout(pegaVoz,300);setTimeout(pegaVoz,1500)}else{fb.hidden=true}
+ for(var i=0;i<PREF.length;i++){for(var k=0;k<pt.length;k++){if(PREF[i].test(pt[k].name)&&!MASC.test(pt[k].name)){voz=pt[k];return voz}}}
+ for(k=0;k<pt.length;k++){if(!MASC.test(pt[k].name)){voz=pt[k];break}}if(!voz)voz=pt[0];return voz}
+if(synth){pegaVoz();if("onvoiceschanged" in synth)synth.onvoiceschanged=pegaVoz;else synth.addEventListener&&synth.addEventListener("voiceschanged",pegaVoz);setTimeout(pegaVoz,300);setTimeout(pegaVoz,1500)}
+var MP3={intro:"voz/intro.mp3","passo-1":"voz/passo-1.mp3","passo-2":"voz/passo-2.mp3","passo-3":"voz/passo-3.mp3","passo-4":"voz/passo-4.mp3","passo-5":"voz/passo-5.mp3","passo-6":"voz/passo-6.mp3","passo-7":"voz/passo-7.mp3","passo-8":"voz/passo-8.mp3","passo-9":"voz/passo-9.mp3","passo-10":"voz/passo-10.mp3","vily-menu":"voz/vily-menu.mp3","vily-menu-volta":"voz/vily-menu-volta.mp3","vily-servicos":"voz/vily-servicos.mp3","vily-agendar":"voz/vily-agendar.mp3","vily-unhas":"voz/vily-unhas.mp3","vily-make":"voz/vily-make.mp3","vily-sobr":"voz/vily-sobr.mp3","vily-cilios":"voz/vily-cilios.mp3","vily-trancas":"voz/vily-trancas.mp3","vily-preco":"voz/vily-preco.mp3","vily-duracao":"voz/vily-duracao.mp3","vily-eventos":"voz/vily-eventos.mp3","vily-horario":"voz/vily-horario.mp3","vily-onde":"voz/vily-onde.mp3","vily-falar":"voz/vily-falar.mp3","vily-fechado":"voz/vily-fechado.mp3"};
+try{var preIntro=new Audio(MP3.intro);preIntro.preload="auto"}catch(e){}
 function limpa(t){return String(t||"").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}←▶◀🔁]/gu,"").replace(/\[.*?\]/g,"a confirmar").replace(/\bR\. /g,"Rua ").replace(/ · /g,", ").replace(/\s+/g," ").trim()}
 function partes(t){var out=[],cur="";t.split(/(?<=[.!?:;])\s+/).forEach(function(f){if((cur+" "+f).length>180&&cur){out.push(cur);cur=f}else cur=cur?cur+" "+f:f});if(cur)out.push(cur);return out}
-var falaTm;
-function falar(t,guardar){if(!on||!synth||!t)return;t=limpa(t);if(!t)return;if(guardar!==false)ultimaFala=t;if(!voz)pegaVoz();synth.cancel();clearTimeout(falaTm);
- falaTm=setTimeout(function(){if(!on||!synth)return;partes(t).forEach(function(p){var u=new SpeechSynthesisUtterance(p);u.lang=voz?voz.lang:"pt-BR";if(voz)u.voice=voz;u.rate=.97;u.pitch=1.1;u.volume=1;synth.speak(u)});if(synth.paused)synth.resume()},60)}
+function escondeAviso(){if(aviso)aviso.hidden=true}
+function mostraAviso(){if(aviso)aviso.hidden=false}
+function armaAviso(){clearTimeout(somTm);escondeAviso();somTm=setTimeout(function(){mostraAviso()},1500)}
+function somComecou(){clearTimeout(somTm);escondeAviso()}
+function paraFala(){clearTimeout(somTm);clearTimeout(falaTm);clearInterval(keepTm);escondeAviso();
+ if(player){try{player.onended=null;player.onerror=null;player.pause()}catch(e){}player=null}
+ if(synth)synth.cancel()}
+function tocaMp3(src){
+ if(player){try{player.onended=null;player.onerror=null;player.pause()}catch(e){}player=null}
+ if(synth)synth.cancel();clearTimeout(falaTm);clearInterval(keepTm);
+ var a=new Audio(src);a.preload="auto";player=a;
+ a.addEventListener("playing",somComecou);a.addEventListener("play",somComecou);
+ a.onerror=function(){if(player===a)mostraAviso()};
+ armaAviso();
+ var p=a.play();if(p&&p.catch)p.catch(function(){mostraAviso()})}
+function falarTTS(t){if(!synth||!t)return;if(!voz)pegaVoz();
+ function start(){if(!on||!synth)return;partes(t).forEach(function(p){var u=new SpeechSynthesisUtterance(p);u.lang="pt-BR";if(voz)u.voice=voz;u.rate=.97;u.pitch=1.1;u.volume=1;u.onstart=somComecou;synth.speak(u)});if(synth.paused)synth.resume();
+  if(isDeskChrome){clearInterval(keepTm);keepTm=setInterval(function(){if(!on||!synth||!synth.speaking){clearInterval(keepTm);return}try{synth.resume()}catch(e){}},8000)}}
+ armaAviso();
+ if(isDeskChrome){synth.cancel();clearTimeout(falaTm);falaTm=setTimeout(start,60)}
+ else{if(synth.speaking||synth.pending)synth.cancel();start()}}
+function falar(t,guardar,chave){if(!on||!t)return;t=limpa(t);if(!t)return;if(guardar!==false){ultimaFala=t;ultimaChave=chave||null}if(chave&&MP3[chave]){tocaMp3(MP3[chave]);return}falarTTS(t)}
 function marca(el){document.querySelectorAll(".guia-atual,.falando").forEach(function(x){x.classList.remove("guia-atual","falando")});if(el)el.classList.add("guia-atual")}
 function centra(el){var hd=document.querySelector(".topo").getBoundingClientRect().bottom+(bar.hidden?0:bar.offsetHeight);var r=el.getBoundingClientRect(),livre=Math.max(innerHeight-hd,160);var y=scrollY+r.top-hd-Math.max(12,(livre-Math.min(r.height,livre-24))/2);scrollTo({top:Math.max(0,y),behavior:reduz?"auto":"smooth"})}
 function txtDe(sel){var e=document.querySelector(sel);return e?Array.prototype.map.call(e.querySelectorAll("p,blockquote"),function(x){return x.innerText}).join(" "):""}
@@ -59,18 +82,18 @@ var PASSOS=[
 var INTRO="Fala ligada. Oi! Eu sou a Vily e vou te guiar pelo site do Studio Vilela. Na barra, o botão 1 é Desativar a fala. Ao lado, Ouvir de novo. O botão 2 é Anterior, e o 3 é Próximo. Toque em Próximo para começar. Você também pode tocar em um texto, ou em mim, no canto da tela.";
 function irPasso(n){n=Math.max(0,Math.min(PASSOS.length-1,n));passo=n;var p=PASSOS[n],el=document.querySelector(p.s);if(!el)return;
  var fim=n===PASSOS.length-1,txtp="Passo "+(n+1)+" de "+PASSOS.length+". "+p.t()+" "+(fim?"Este é o último passo. Toque em Anterior para voltar, ou em mim para abrir o menu.":"Toque em Próximo para continuar, ou em Anterior para voltar.");
- vtxt.textContent="Passo "+(n+1)+" de "+PASSOS.length+" — "+p.r+". "+(fim?"Último passo. Toque em Anterior para voltar, ou em mim para abrir o menu.":"Toque em Próximo para continuar.");marca(el);if(!el.hasAttribute("tabindex"))el.setAttribute("tabindex","-1");try{el.focus({preventScroll:true})}catch(e){}centra(el);setTimeout(function(){centra(el)},450);falar(txtp)}
-function setFala(v,silencio){on=v;fb.setAttribute("aria-pressed",v);fb.classList.toggle("ligada",v);fb.innerHTML=(v?"🔊 <span>Fala ligada</span>":"🔈 <span>Ativar a fala</span>");fb.setAttribute("aria-label",v?"Fala ligada. Toque para desligar.":"Ativar a fala");
- bar.hidden=!v;try{localStorage.setItem("sv-fala",v?"1":"0")}catch(e){}if(!v){clearTimeout(falaTm);if(synth)synth.cancel();marca(null);passo=-1;vtxt.textContent="Toque em Próximo para começar."}}
-try{setFala(localStorage.getItem("sv-fala")==="1",true)}catch(e){setFala(false,true)}
+ vtxt.textContent="Passo "+(n+1)+" de "+PASSOS.length+" — "+p.r+". "+(fim?"Último passo. Toque em Anterior para voltar, ou em mim para abrir o menu.":"Toque em Próximo para continuar.");marca(el);if(!el.hasAttribute("tabindex"))el.setAttribute("tabindex","-1");try{el.focus({preventScroll:true})}catch(e){}centra(el);setTimeout(function(){centra(el)},450);falar(txtp,true,"passo-"+(n+1))}
+function setFala(v){on=v;fb.setAttribute("aria-pressed",v);fb.classList.toggle("ligada",v);fb.innerHTML=(v?"🔊 <span>Fala ligada</span>":"🔈 <span>Ativar a fala</span>");fb.setAttribute("aria-label",v?"Fala ligada. Toque para desligar.":"Ativar a fala");
+ bar.hidden=!v;try{localStorage.setItem("sv-fala",v?"1":"0")}catch(e){}if(!v){paraFala();marca(null);passo=-1;vtxt.textContent="Toque em Próximo para começar."}}
+try{setFala(localStorage.getItem("sv-fala")==="1")}catch(e){setFala(false)}
 function ajustaBar(){var t=document.querySelector(".topo");if(t)document.documentElement.style.setProperty("--topo-h",t.offsetHeight+"px")}
 ajustaBar();addEventListener("resize",ajustaBar);
-fb.onclick=function(){if(on){setFala(false);return}setFala(true);ajustaBar();passo=-1;vtxt.textContent="Toque em Próximo para começar.";falar(INTRO)};
+fb.onclick=function(){if(on){setFala(false);return}setFala(true);ajustaBar();passo=-1;vtxt.textContent="Toque em Próximo para começar.";ultimaFala=INTRO;ultimaChave="intro";tocaMp3(MP3.intro)};
 document.getElementById("voz-off").onclick=function(){setFala(false);fb.focus()};
-document.getElementById("voz-rep").onclick=function(){if(!ultimaFala)ultimaFala=INTRO;falar(ultimaFala)};
+document.getElementById("voz-rep").onclick=function(){if(!ultimaChave&&!ultimaFala){ultimaFala=INTRO;ultimaChave="intro"}falar(ultimaFala||INTRO,false,ultimaChave)};
 document.getElementById("voz-prox").onclick=function(){irPasso(passo+1)};
 document.getElementById("voz-ant").onclick=function(){irPasso(passo<=0?0:passo-1)};
-/* toque, foco e (no computador) passar o mouse lê o texto */
+/* toque, foco e (no computador) passar o mouse lê o texto (Web Speech, texto dinâmico) */
 var alvo="h1,h2,h3,p,li,summary,blockquote,a.btn,dt,dd",tmHover,semHover=matchMedia("(hover:none)").matches;
 function ler(el){if(!on||!el||el.closest("#voz-bar,.fada"))return;marca(null);el.classList.add("falando");falar(el.getAttribute("aria-label")||el.innerText)}
 document.addEventListener("focusin",function(e){if(!on||e.target.closest("#voz-bar,.fada")||e.target===ult)return;var el=e.target.closest(alvo);if(el&&e.target.matches(":focus-visible")){ult=el;ler(el)}});
@@ -93,12 +116,12 @@ var GUIA={servicos:"Toque em Unhas ou Maquiagem para falar com a Rafaela. Toque 
 function falaVily(k,v,prim){var t=(prim?"Oi! Eu sou a Vily. ":"")+v[0]+" ";
  if(Array.isArray(v[1])){t+=(GUIA[k]||"")+" Opções: "+v[1].filter(function(b){return b[1]!=="menu"}).map(function(b){return limpa(b[0])}).join(", ")+". "+(k==="menu"?"Toque em uma opção. Por exemplo, toque em Serviços para conhecer unhas, maquiagem, sobrancelha, cílios e tranças.":"Ou toque em Voltar.")}
  else{var q=QUEM[v[1]];t+=(k==="onde"?" Toque em Como chegar para abrir o mapa. ":"")+(q==="raf"?"Toque em WhatsApp da Rafaela.":q==="jen"?"Toque em WhatsApp da Jennyfer.":"Toque em Rafaela, para unhas e maquiagem, ou em Jennyfer, para sobrancelha, cílios e tranças.")+" O WhatsApp abre com a mensagem pronta; é só tocar em enviar. Ou toque em Voltar."}
- falar(t)}
+ falar(t,true,k==="menu"?(prim?"vily-menu":"vily-menu-volta"):"vily-"+k)}
 function show(k,prim){var v=V[k];txt.textContent=v[0];falaVily(k,v,prim);
 if(Array.isArray(v[1]))bx.innerHTML=v[1].map(function(b){return '<button data-k="'+b[1]+'">'+b[0]+'</button>'}).join("");
 else bx.innerHTML=(k==='onde'?'<a class="wa" href="'+MAPS+'" target="_blank" rel="noopener">📍 Como chegar</a>':'')+links(v[1],M[v[1]])+'<button data-k="menu">← Voltar</button>'}
 bx.onclick=function(e){var b=e.target.closest("[data-k]");if(b){ult=b;show(b.dataset.k)}};
-function abrir(o){pn.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){show("menu",true);pn.querySelector("button").focus({preventScroll:true})}else{btn.focus({preventScroll:true});if(synth&&on)falar("Menu da Vily fechado.",false)}}
+function abrir(o){pn.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){show("menu",true);pn.querySelector("button").focus({preventScroll:true})}else{btn.focus({preventScroll:true});if(on)falar("Menu da Vily fechado.",false,"vily-fechado")}}
 btn.onclick=function(){abrir(pn.hidden)};document.getElementById("fada-fechar").onclick=function(){abrir(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!pn.hidden)abrir(false)});
 if(location.hash==="#fada")abrir(true);if(location.hash==="#fada-onde"){abrir(true);show("onde")}if(location.hash==="#fada-horario"){abrir(true);show("horario")}if(location.hash==="#fada-agendar"){abrir(true);show("agendar")}var hv=location.hash.match(/^#fada-v-(\w+)$/);if(hv&&V[hv[1]]){abrir(true);show(hv[1])}
