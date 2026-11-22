@@ -2,7 +2,7 @@
 Site estático (HTML/CSS/JS), pronto para GitHub Pages. Abra `index.html`.
 
 ## Falta preencher (caixinhas amarelas no site)
-- WhatsApp configurado: (11) 94269-4714 (Rafaela Vilela) — `app.js`, `WA="5511942694714"`.
+- WhatsApp: Rafaela Vilela (11) 94269-4714 — unhas e maquiagem (`WA`); Jennyfer Vilela (11) 99596-5175 — sobrancelha, cílios e tranças (`WA_JEN`). Botões com `data-quem="jen"` vão para a Jennyfer.
 - preços, duração, formas de pagamento, história/nomes, depoimentos reais, fotos reais da galeria.
 
 Endereço (confirmado): Rua Rui Ribeiro Lopes, 91, Centro, São Roque - SP, CEP 18130-210 — mapa do Google embutido + botão Como chegar.
@@ -19,7 +19,7 @@ Endereço (confirmado): Rua Rui Ribeiro Lopes, 91, Centro, São Roque - SP, CEP 
 - `logo-foto.jpg`: foto do logo do studio (enviada pela família).
 
 ## Créditos (Pexels, licença livre — https://www.pexels.com/license/)
-Fotos: Shantanu Kumar (36207029), Moo Lens (34373402), Valdans Media (30589139), Jimmy Elizarraras (20775979), Yan Krukau (7315472).
+Fotos: Nataliya Vaitkevich (5128220, cílios), Donviour Photography (14883868, tranças), Shantanu Kumar (36207029), Moo Lens (34373402), Valdans Media (30589139), Jimmy Elizarraras (20775979), Yan Krukau (7315472).
 Vídeos do hero: Artem Podrez — https://www.pexels.com/video/4783390/ ; Pavel Danilyuk — https://www.pexels.com/video/4855852/ ; Kaboompics — https://www.pexels.com/video/7311589/ . Recortados, sem áudio e sem texto na tela.
 
 Horário: terça a sábado somente com hora marcada; domingo e segunda fechado.

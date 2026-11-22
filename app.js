@@ -1,11 +1,11 @@
 /* Studio Vilela — assistente Vily (regras, sem IA) + fala (Web Speech API do navegador, sem serviços externos).
    Troque WA pelo número real (só dígitos, 55 + DDD + número). */
 (function(){
-var WA="5511942694714";               // WhatsApp do studio: (11) 94269-4714 (Rafaela Vilela)
+var WA="5511942694714", WA_JEN="5511995965175";               // Rafaela Vilela (11) 94269-4714: unhas e maquiagem · Jennyfer Vilela (11) 99596-5175: sobrancelha, cílios e tranças
 var HORARIO="Terça a sábado: somente com hora marcada. Domingo e segunda: fechado", ENDERECO="Rua Rui Ribeiro Lopes, 91, Centro, São Roque - SP, CEP 18130-210", MAPS="https://www.google.com/maps/search/?api=1&query=Rua%20Rui%20Ribeiro%20Lopes%2C%2091%2C%20Centro%2C%20S%C3%A3o%20Roque%20-%20SP%2C%2018130-210%2C%20Brasil";
 var reduz=matchMedia("(prefers-reduced-motion: reduce)").matches;
-function wa(m){return WA?"https://wa.me/"+WA+"?text="+encodeURIComponent(m):"#agendar";}
-document.querySelectorAll(".js-wa").forEach(function(a){a.href=wa(a.dataset.msg);if(WA){a.target="_blank";a.rel="noopener"}});
+function wa(m,n){n=n||WA;return n?"https://wa.me/"+n+"?text="+encodeURIComponent(m):"#agendar";}
+document.querySelectorAll(".js-wa").forEach(function(a){a.href=wa(a.dataset.msg,a.dataset.quem==="jen"?WA_JEN:WA);if(WA){a.target="_blank";a.rel="noopener"}});
 /* menu */
 var mb=document.querySelector(".menu-btn"),ul=document.getElementById("menu");
 mb.onclick=function(){var o=ul.classList.toggle("aberto");mb.setAttribute("aria-expanded",o)};
@@ -42,18 +42,21 @@ document.addEventListener("mouseover",ler);document.addEventListener("focusin",l
 document.addEventListener("click",function(e){if(!on)return;var s=e.target.closest&&e.target.closest("[data-fala] p,[data-fala] h2,[data-fala] h3");if(s){ult=null;ler({target:s,type:"click"})}});
 /* Vily */
 var btn=document.getElementById("fada-btn"),pn=document.getElementById("fada-painel"),txt=document.getElementById("fada-txt"),bx=document.getElementById("fada-botoes");
-var M={agendar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar um horário, por favor.\nServiço:\nDia/horário de preferência:",unhas:"Olá, Studio Vilela! Tudo bem? Gostaria de agendar unhas, por favor.\nDia/horário de preferência:",make:"Olá, Studio Vilela! Tudo bem? Gostaria de agendar maquiagem, por favor.\nÉ para evento? Qual:\nDia/horário:",sobr:"Olá, Studio Vilela! Tudo bem? Gostaria de agendar sobrancelha, por favor.\nDia/horário de preferência:",preco:"Olá, Studio Vilela! Tudo bem? Gostaria de saber os preços de:",horario:"Olá, Studio Vilela! Tudo bem? Gostaria de marcar um horário. Quais dias vocês têm disponíveis?",onde:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar uma visita.",falar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de mais informações, por favor."};
+var M={agendar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar um horário, por favor.\nServiço:\nDia/horário de preferência:",unhas:"Olá, Rafaela! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar unhas, por favor.\nDia/horário de preferência:",make:"Olá, Rafaela! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar maquiagem, por favor.\nÉ para evento? Qual:\nDia/horário:",sobr:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar design de sobrancelha, por favor.\nDia/horário de preferência:",cilios:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar cílios (lash), por favor.\nDia/horário de preferência:",trancas:"Olá, Jennyfer! Tudo bem? Vim pelo site do Studio Vilela e gostaria de agendar tranças, por favor.\nModelo/tamanho:\nDia/horário de preferência:",preco:"Olá, Studio Vilela! Tudo bem? Gostaria de saber os preços de:",horario:"Olá, Studio Vilela! Tudo bem? Gostaria de marcar um horário. Quais dias vocês têm disponíveis?",onde:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de agendar uma visita.",falar:"Olá, Studio Vilela! Tudo bem? Vim pelo site e gostaria de mais informações, por favor."};
 var V={menu:["Como posso te ajudar? 🦋",[["📅 Agendar horário","agendar"],["💅 Serviços","servicos"],["💬 Preços e dúvidas","preco"],["🕘 Horário","horario"],["📍 Onde fica","onde"],["📲 Falar com o studio","falar"]]],
-servicos:["Qual serviço você quer?",[["💅 Unhas","unhas"],["💄 Maquiagem","make"],["✨ Sobrancelha","sobr"],["← Voltar","menu"]]],
-agendar:["Vou abrir o WhatsApp com a mensagem pronta. É só apertar enviar.","agendar"],unhas:["Unhas lindas vindo aí!","unhas"],make:["Make pra arrasar!","make"],sobr:["Sobrancelha perfeita pro seu olhar!","sobr"],
-preco:["Os preços variam por serviço. Pergunte direto pro studio:","preco"],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Fale direto com o studio:","falar"]};
-function link(t,m){return '<a class="wa" href="'+wa(m)+'"'+(WA?' target="_blank" rel="noopener"':'')+'>'+t+'</a>'}
+servicos:["Qual serviço você quer?",[["💅 Unhas","unhas"],["💄 Maquiagem","make"],["✨ Sobrancelha","sobr"],["👁️ Cílios (lash)","cilios"],["💫 Tranças","trancas"],["← Voltar","menu"]]],
+agendar:["Escolha com quem falar. Vou abrir o WhatsApp com a mensagem pronta, é só apertar enviar.","agendar"],unhas:["Unhas lindas com a Rafaela!","unhas"],make:["Make pra arrasar com a Rafaela!","make"],sobr:["Sobrancelha perfeita pro seu olhar! Quem cuida é a Jennyfer.","sobr"],cilios:["Cílios lindos com a Jennyfer!","cilios"],trancas:["Tranças com a Jennyfer!","trancas"],
+preco:["Os preços variam por serviço. Pergunte direto pro studio:","preco"],horario:[HORARIO+". Chame o studio no WhatsApp para combinar o seu horário.","horario"],onde:["Estamos na "+ENDERECO+". Toque em Como chegar para abrir o mapa.","onde"],falar:["Com quem você quer falar?","falar"]};
+var QUEM={unhas:"raf",make:"raf",sobr:"jen",cilios:"jen",trancas:"jen"};
+function link(t,m,n){return '<a class="wa" href="'+wa(m,n)+'" target="_blank" rel="noopener">'+t+'</a>'}
+function links(k,m){var q=QUEM[k];if(q==="raf")return link("WhatsApp da Rafaela",m,WA);if(q==="jen")return link("WhatsApp da Jennyfer",m,WA_JEN);
+return link("Rafaela · unhas e maquiagem",m.replace("Olá, Studio Vilela!","Olá, Rafaela!"),WA)+link("Jennyfer · sobrancelha, cílios e tranças",m.replace("Olá, Studio Vilela!","Olá, Jennyfer!"),WA_JEN)}
 function show(k){var v=V[k];txt.textContent=v[0];falar("Vily diz: "+v[0].replace(/\[.*?\]/g,"a confirmar"));
 if(Array.isArray(v[1]))bx.innerHTML=v[1].map(function(b){return '<button data-k="'+b[1]+'">'+b[0]+'</button>'}).join("");
-else bx.innerHTML=(k==='onde'?'<a class="wa" href="'+MAPS+'" target="_blank" rel="noopener">📍 Como chegar</a>':'')+link("Abrir WhatsApp",M[v[1]])+(WA?"":'<p class="ph" style="font-size:.78rem;margin:0">[WhatsApp do studio ainda não configurado]</p>')+'<button data-k="menu">← Voltar</button>'}
+else bx.innerHTML=(k==='onde'?'<a class="wa" href="'+MAPS+'" target="_blank" rel="noopener">📍 Como chegar</a>':'')+links(v[1],M[v[1]])+'<button data-k="menu">← Voltar</button>'}
 bx.onclick=function(e){var b=e.target.closest("[data-k]");if(b){ult=b;show(b.dataset.k)}};
 function abrir(o){pn.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){show("menu");pn.querySelector("button").focus()}else{btn.focus();if(synth)synth.cancel()}}
 btn.onclick=function(){abrir(pn.hidden)};document.getElementById("fada-fechar").onclick=function(){abrir(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!pn.hidden)abrir(false)});
-if(location.hash==="#fada")abrir(true);if(location.hash==="#fada-onde"){abrir(true);show("onde")}if(location.hash==="#fada-horario"){abrir(true);show("horario")}
+if(location.hash==="#fada")abrir(true);if(location.hash==="#fada-onde"){abrir(true);show("onde")}if(location.hash==="#fada-horario"){abrir(true);show("horario")}if(location.hash==="#fada-agendar"){abrir(true);show("agendar")}
 })();
