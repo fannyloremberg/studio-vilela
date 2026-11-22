@@ -12,7 +12,8 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 - Assistente **Vily** (fadinha borboleta, por regras, sem IA): agendar, serviços, valores (sob consulta), horário, onde fica, falar com o studio.
 - **Ativar a fala**: guia por voz no estilo da COMPSISTEM. As falas fixas (introdução, 11 passos do guia espacial — onde fica cada coisa e como usar — com versões celular e computador quando o layout muda, menus e respostas da Vily) são MP3s gravados com a voz neural **Microsoft Thalita Multilingual** (pt-BR), em `voz/`. O primeiro áudio começa dentro do toque em Ativar a fala (necessário no iPhone). Se o som não começar em cerca de 1,5 s, aparece um aviso para tirar o modo silencioso e aumentar o volume. Textos dinâmicos (FAQ, toque/foco no conteúdo) usam a Web Speech API do navegador como reserva. Desligado por padrão, lembra a escolha (`localStorage`).
 - Galeria com lightbox, FAQ, depoimentos (modelo), faixa de chamada, animações de entrada.
-- `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos e sem animações.
+- `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos, sem borboletas voando e sem animações.
+- Nas seções claras, algumas borboletas douradas (no estilo do logo) voam devagar atrás do conteúdo. Não aparecem no hero, no bloco escuro de agendar nem no rodapé. Menos no celular; pausam com a aba oculta.
 
 ## Imagens
 - Borboleta dourada (`img/borboleta.webp`) e fadinha Vily (`img/fada.webp`, `img/fada-avatar.webp`): arte original gerada para este projeto, recortada com fundo transparente.
