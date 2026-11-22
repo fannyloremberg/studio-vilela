@@ -3,13 +3,13 @@ Site estático (HTML/CSS/JS), pronto para GitHub Pages. Abra `index.html`.
 
 ## Falta preencher (caixinhas amarelas no site)
 - WhatsApp: Rafaela Vilela (11) 94269-4714 — unhas e maquiagem (`WA`); Jennyfer Vilela (11) 99596-5175 — sobrancelha, cílios e tranças (`WA_JEN`). Botões com `data-quem="jen"` vão para a Jennyfer.
-- preços, história/nomes, depoimentos reais.
+- depoimentos reais.
 
 Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 18120-000 — mapa do Google embutido + botão Como chegar.
 
 ## Recursos
 - Hero com vídeo mudo em loop (`video/hero.mp4`, 14 s, 1280×720, ~0,7 MB) + pôster, véu cinza/dourado e brilhos dourados (canvas).
-- Assistente **Vily** (fadinha borboleta, por regras, sem IA): agendar, serviços, preços, horário, onde fica, falar com o studio.
+- Assistente **Vily** (fadinha borboleta, por regras, sem IA): agendar, serviços, valores (sob consulta), horário, onde fica, falar com o studio.
 - **Ativar a fala**: lê textos em voz alta (Web Speech API do navegador, voz pt-BR), ao passar o mouse, focar ou clicar; a Vily fala as respostas. Desligado por padrão, lembra a escolha (`localStorage`). Sem serviços externos.
 - Galeria com lightbox, FAQ, depoimentos (modelo), faixa de chamada, animações de entrada.
 - `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos e sem animações.
