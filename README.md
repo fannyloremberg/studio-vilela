@@ -10,7 +10,7 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 ## Recursos
 - Hero com vídeo mudo em loop (`video/hero.mp4`, 14 s, 1280×720, ~0,7 MB) + pôster, véu cinza/dourado e brilhos dourados (canvas).
 - Assistente **Vily** (fadinha borboleta, por regras, sem IA): agendar, serviços, valores (sob consulta), horário, onde fica, falar com o studio.
-- **Ativar a fala**: guia por voz no estilo da COMPSISTEM. As falas fixas (introdução, 10 passos do guia, menus e respostas da Vily) são MP3s gravados com a voz neural **Microsoft Thalita Multilingual** (pt-BR), em `voz/`. O primeiro áudio começa dentro do toque em Ativar a fala (necessário no iPhone). Se o som não começar em cerca de 1,5 s, aparece um aviso para tirar o modo silencioso e aumentar o volume. Textos dinâmicos (FAQ, toque/foco no conteúdo) usam a Web Speech API do navegador como reserva. Desligado por padrão, lembra a escolha (`localStorage`).
+- **Ativar a fala**: guia por voz no estilo da COMPSISTEM. As falas fixas (introdução, 11 passos do guia espacial — onde fica cada coisa e como usar — com versões celular e computador quando o layout muda, menus e respostas da Vily) são MP3s gravados com a voz neural **Microsoft Thalita Multilingual** (pt-BR), em `voz/`. O primeiro áudio começa dentro do toque em Ativar a fala (necessário no iPhone). Se o som não começar em cerca de 1,5 s, aparece um aviso para tirar o modo silencioso e aumentar o volume. Textos dinâmicos (FAQ, toque/foco no conteúdo) usam a Web Speech API do navegador como reserva. Desligado por padrão, lembra a escolha (`localStorage`).
 - Galeria com lightbox, FAQ, depoimentos (modelo), faixa de chamada, animações de entrada.
 - `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos e sem animações.
 

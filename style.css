@@ -99,7 +99,15 @@ dialog img{max-width:min(90vw,540px);max-height:86vh;width:auto}
 .voz-bar button{font:inherit;font-size:.88rem;font-weight:600;min-height:44px;border-radius:30px;border:0;background:var(--foil);color:#2c2410;cursor:pointer;padding:0 .8rem}
 .voz-bar .voz-sec{background:transparent;border:1px solid var(--o1);color:#fff}
 .voz-bar p{grid-column:1/-1;margin:0;font-size:.82rem;line-height:1.45;color:#eee}
-.guia-atual{outline:3px solid var(--o2)!important;outline-offset:4px;border-radius:10px;box-shadow:0 0 0 8px rgba(214,178,94,.18)}
+.guia-atual{outline:3px solid var(--o2)!important;outline-offset:6px;border-radius:12px;box-shadow:0 0 0 8px rgba(214,178,94,.25);animation:guiaPulse 1.6s ease-in-out infinite;z-index:3}
+@keyframes guiaPulse{0%,100%{box-shadow:0 0 0 6px rgba(214,178,94,.18)}50%{box-shadow:0 0 0 14px rgba(214,178,94,.45)}}
+.guia-seta{position:fixed;z-index:40;width:28px;height:28px;pointer-events:none;filter:drop-shadow(0 2px 6px rgba(44,36,16,.35));transform:translate(-50%,-120%);background:transparent}
+.guia-seta::before{content:"";display:block;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:18px solid var(--o2);animation:guiaSeta 1s ease-in-out infinite}
+.guia-seta.abaixo{transform:translate(-50%,20%)}
+.guia-seta.abaixo::before{border-top:0;border-bottom:18px solid var(--o2)}
+@keyframes guiaSeta{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.guia-seta.abaixo::before{animation-name:guiaSetaUp}
+@keyframes guiaSetaUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @media(max-width:700px){.voz-in{grid-template-columns:1fr;padding:.5rem .75rem;gap:.4rem}.voz-bar button{min-height:42px;font-size:.82rem}.voz-bar p{font-size:.78rem}}
 
 .voz-aviso{grid-column:1/-1;margin:0;font-size:.8rem;line-height:1.4;color:#f6e3a1}
