@@ -20,12 +20,10 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 - `logo-foto.jpg`: foto do logo do studio (enviada pela família).
 
 ## Créditos (Pexels, licença livre — https://www.pexels.com/license/)
-Fotos: Kaboompics (4963818, unhas — card de serviço), Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Valdans Media (30589139).
+Fotos: Natalie Bond (29185853, unhas — card de serviço), Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Speak Media Uganda (37600595, tranças — card de serviço), Valdans Media (30589139).
 Vídeos do hero: Artem Podrez — https://www.pexels.com/video/4783390/ ; Pavel Danilyuk — https://www.pexels.com/video/4855852/ ; Kaboompics — https://www.pexels.com/video/7311589/ . Recortados, sem áudio e sem texto na tela.
 
 Horário: terça a sábado somente com hora marcada; domingo e segunda fechado.
-
-Card de Tranças (`img/trancas-box.jpg`): imagem ilustrativa original gerada para este projeto (não é foto de cliente).
 
 Pagamento: aceita dinheiro. Duração: de 20 min a 3h30, ou mais, conforme o procedimento. Casamentos e eventos: com hora marcada, confirmar antes com as profissionais.
 
