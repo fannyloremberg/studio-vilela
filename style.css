@@ -169,3 +169,85 @@ dialog img{max-width:min(90vw,540px);max-height:86vh;width:auto}
 @media(max-width:900px){
   .fada-painel.pedido-aberto{position:fixed;left:10px;right:10px;bottom:70px;width:auto;max-width:none;margin:0;max-height:calc(100vh - 82px);overflow:hidden;z-index:51}
 }
+
+/* Área do estúdio (link discreto no rodapé) e Agenda interna */
+.area-studio{margin:1.1rem 0 0;font-size:.72rem;letter-spacing:.04em}
+.area-studio a{color:#8d8d93;text-decoration:none;border-bottom:1px solid rgba(141,141,147,.4)}
+.area-studio a:hover{color:var(--o1);border-bottom-color:var(--o1)}
+body.agenda-pag footer{padding-bottom:3rem}
+.agenda-main{max-width:880px;margin:0 auto;padding:2.4rem 6% 4rem}
+.agenda-main h1{font-size:clamp(2.1rem,5vw,3.1rem);margin:.2rem 0 1.2rem}
+.agenda-aviso{background:#fff8e8;border:1px solid rgba(214,178,94,.55);border-radius:14px;padding:.9rem 1.1rem;margin:0 0 1.4rem;text-align:left;color:#5a4a22;font-size:.92rem}
+.agenda-aviso.demo kbd,.agenda-aviso.demo code{background:#fff;border:1px solid rgba(168,131,47,.4);border-radius:6px;padding:.05rem .35rem;font-size:.85em}
+.agenda-card{background:#fff;border:1px solid rgba(214,178,94,.4);border-radius:20px;padding:1.6rem 1.5rem 1.8rem;box-shadow:0 10px 30px rgba(40,40,50,.06);text-align:left}
+.agenda-entrar h2{margin:0 0 .3rem;font-size:1.8rem}
+.agenda-entrar label,.agenda-dlg label{display:block;margin:0.85rem 0 .3rem;font-weight:500;font-size:.9rem}
+.agenda-entrar input[type=password],.agenda-dlg input[type=text],.agenda-dlg input[type=date],.agenda-dlg input[type=time],.agenda-dlg select,.agenda-dlg textarea{width:100%;font:inherit;padding:.65rem .8rem;border:1px solid rgba(168,131,47,.45);border-radius:12px;background:#fff}
+.agenda-entrar fieldset,.agenda-periodos{border:0;padding:0;margin:.4rem 0 0}
+.agenda-entrar legend,.agenda-periodos legend{font-weight:500;font-size:.9rem;padding:0;margin:0 0 .5rem}
+.agenda-quem{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.agenda-quem-op{margin:0;cursor:pointer}
+.agenda-quem-op input{position:absolute;opacity:0;pointer-events:none}
+.agenda-quem-op span{display:block;text-align:center;padding:.85rem .5rem;border-radius:14px;border:2px solid rgba(214,178,94,.55);background:#fffdf6;font-weight:600;color:var(--esc)}
+.agenda-quem-op.jen span{border-color:rgba(183,110,121,.55);background:#fdf6f7}
+.agenda-quem-op input:focus-visible+span{outline:3px solid var(--o2);outline-offset:2px}
+.agenda-quem-op input:checked+span{background:var(--foil);color:#2c2410;border-color:transparent}
+.agenda-quem-op.jen input:checked+span{background:linear-gradient(120deg,#8a4450 0%,#c47a86 40%,#f0c4cb 100%);color:#2c1418}
+.agenda-erro{color:#8a2a2a;background:#fdeeee;border-radius:10px;padding:.5rem .7rem;margin:.8rem 0;font-size:.9rem}
+.agenda-entrar .btn{margin-top:1.1rem;border:0;cursor:pointer;font:inherit}
+.agenda-barra{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin:0 0 1rem}
+.agenda-ola{margin:0;font-size:1.05rem}
+.agenda-barra-acoes{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.agenda-barra-acoes .btn{border:0;cursor:pointer;font:inherit}
+.agenda-sair,.agenda-editar,.agenda-apagar,.agenda-recusar,.agenda-hoje{font:inherit;font-size:.82rem;background:transparent;border:1px solid rgba(168,131,47,.4);border-radius:30px;padding:.4rem .85rem;cursor:pointer;color:var(--esc)}
+.agenda-recusar,.agenda-apagar{border-color:rgba(160,70,70,.4);color:#7a3030}
+.agenda-legendas{display:flex;flex-wrap:wrap;gap:.6rem 1rem;margin:0 0 1.1rem;font-size:.8rem;color:#5a5a60}
+.agenda-leg{display:inline-flex;align-items:center;gap:.4rem}
+.agenda-leg::before{content:"";width:.7rem;height:.7rem;border-radius:50%;background:var(--o2)}
+.agenda-leg.jen::before{background:#c47a86}
+.agenda-leg.agd::before{background:#fff6dc;box-shadow:inset 0 0 0 2px var(--o3);border-radius:3px}
+.agenda-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1rem;margin:0 0 1.3rem}
+.agenda-vistas{display:inline-flex;border:1px solid rgba(168,131,47,.45);border-radius:30px;overflow:hidden}
+.agenda-vistas button{font:inherit;font-size:.85rem;border:0;background:transparent;padding:.4rem 1rem;cursor:pointer;color:var(--esc)}
+.agenda-vistas button[aria-pressed=true]{background:var(--foil);color:#2c2410}
+.agenda-periodo{display:flex;align-items:center;gap:.4rem;flex:1;justify-content:center}
+.agenda-periodo p{margin:0;font-family:"Cormorant Garamond",serif;font-size:1.25rem;min-width:12rem;text-align:center}
+.agenda-periodo button{font:inherit;border:0;background:#fff;border-radius:50%;width:36px;height:36px;cursor:pointer;border:1px solid rgba(168,131,47,.35)}
+.agenda-lista{display:grid;gap:1.2rem;text-align:left}
+.agenda-dia{background:#fff;border:1px solid rgba(214,178,94,.3);border-radius:18px;padding:1rem 1.1rem 1.15rem}
+.agenda-dia.hoje{border-color:var(--o2);box-shadow:0 0 0 1px rgba(214,178,94,.25)}
+.agenda-dia h3{font-size:1.45rem;margin:0 0 .7rem}
+.agenda-tag-hoje{font-family:Montserrat,sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:var(--foil);color:#2c2410;border-radius:20px;padding:.15rem .5rem;margin-left:.3rem;vertical-align:middle}
+.agenda-vazio{margin:0;color:#7a7a80;font-size:.92rem}
+.agenda-item{position:relative;border:1px solid rgba(214,178,94,.35);border-left:6px solid var(--o2);border-radius:14px;padding:.85rem 1rem;margin:.6rem 0 0;background:#fffdf8}
+.agenda-item.jen{border-left-color:#c47a86;background:#fdf8f9}
+.agenda-item.aguardando{box-shadow:0 0 0 2px var(--o3);background:#fff6dc}
+.agenda-item-topo{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
+.agenda-quando{margin:0;font-weight:600;color:var(--o4)}
+.agenda-prof{margin:0;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.agenda-prof.raf{color:var(--o3)}
+.agenda-prof.jen{color:#8a4450}
+.agenda-item h4{margin:.15rem 0 0;font-size:1.35rem}
+.agenda-serv{margin:.1rem 0 0;color:#55555b}
+.agenda-obs{margin:.25rem 0 0;font-size:.88rem;color:#6a6a70}
+.agenda-badge{display:inline-block;margin:.45rem 0 0;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#6b5420;border:1px solid var(--o3);border-radius:20px;padding:.15rem .55rem}
+.agenda-item-acoes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.agenda-item-acoes .btn{border:0;cursor:pointer;font:inherit}
+.agenda-dlg{border:0;padding:1.4rem 1.4rem 1.5rem;border-radius:20px;border:1px solid var(--o2);width:min(440px,94vw);background:#fff}
+.agenda-dlg::backdrop{background:rgba(25,25,28,.7)}
+.agenda-dlg h2{margin:0 0 .6rem;font-size:1.7rem}
+.agenda-periodos label{display:inline-flex;align-items:center;gap:.35rem;margin:0 .8rem .4rem 0;font-weight:400}
+.agenda-dlg-acoes{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.agenda-dlg-acoes .btn{border:0;cursor:pointer;font:inherit}
+@media(max-width:900px){
+  body.agenda-pag .topo .mini-cta{display:inline-block}
+  body.agenda-pag .marca span{display:inline}
+  body.agenda-pag .agenda-barra-acoes .mini-cta,
+  body.agenda-pag .agenda-item-acoes .mini-cta{display:inline-block}
+}
+@media(max-width:700px){
+  .agenda-quem{grid-template-columns:1fr}
+  .agenda-barra,.agenda-nav{flex-direction:column;align-items:stretch}
+  .agenda-periodo{justify-content:space-between}
+  .agenda-barra-acoes{justify-content:flex-start}
+}

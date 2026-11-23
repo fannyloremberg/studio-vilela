@@ -1,0 +1,197 @@
+GUIA DA AGENDA DO STUDIO VILELA
+================================
+
+Este passo a passo é para a Fanny (ou quem for configurar a agenda
+pela primeira vez). Não precisa saber programar. Faça com calma,
+um passo de cada vez, no computador (é mais fácil do que no celular).
+
+O que vai acontecer, em resumo:
+  1) Você cria uma planilha no Google (é aí que ficam os horários).
+  2) Cola um código pronto e define a senha do estúdio.
+  3) Publica esse código como “app da Web” e copia a URL.
+  4) Cola a URL em um arquivo do site e publica a prévia.
+
+Enquanto a URL não estiver configurada, a página
+https://fannyloremberg.github.io/studio-vilela-previa/agenda.html
+funciona em MODO DEMONSTRAÇÃO, com dados de exemplo
+(a senha de exemplo é: demo). Nada é gravado de verdade.
+
+
+1. Entre na sua conta Google
+----------------------------
+Abra o Chrome e entre com o Gmail do Studio Vilela
+(o mesmo que você já usa no Google).
+
+
+2. Crie a planilha
+------------------
+1. Abra: https://sheets.google.com
+2. Clique em “Em branco” para criar uma planilha nova.
+3. Lá em cima, clique no nome “Planilha sem título” e
+   escreva: Agenda Studio Vilela
+4. Deixe a planilha aberta.
+
+
+3. Abra o Apps Script (o “motor” da agenda)
+-------------------------------------------
+1. No menu da planilha, clique em Extensões.
+2. Clique em Apps Script.
+3. Abre uma aba nova, com um código de exemplo.
+4. Apague tudo o que estiver nessa tela (Ctrl+A e depois Delete).
+5. Abra o arquivo apps-script/Code.gs desta pasta do site
+   (é o código pronto da agenda).
+6. Copie TUDO e cole na tela do Apps Script.
+7. Clique no disquete (Salvar), ou pressione Ctrl+S.
+8. Se pedir um nome do projeto, escreva: Agenda Studio Vilela.
+
+
+4. Defina a senha do estúdio (muito importante)
+-----------------------------------------------
+A senha NÃO vai no site. Ela fica só no Google, escondida.
+
+1. No Apps Script, à esquerda, clique no ícone de engrenagem
+   (Configurações do projeto).
+2. Role até “Propriedades do script” e clique em
+   “Adicionar propriedade do script”.
+   (Se a tela estiver em inglês: Script properties >
+   Add script property.)
+3. Em “Propriedade” (Property), escreva exatamente: SENHA
+   (tudo em maiúsculas, sem acento).
+4. Em “Valor” (Value), escreva a senha que as meninas vão usar
+   para entrar na agenda. Escolha uma senha que só o estúdio
+   conheça. Não use a senha do Gmail.
+5. Clique em Salvar propriedades (Save script properties).
+
+Pronto. Rafaela e Jennyfer usam o próprio nome + essa senha
+para entrar na página da agenda.
+
+
+5. Publique o app da Web
+------------------------
+1. Volte para o editor (ícone de código, à esquerda,
+   “Editor”).
+2. Lá em cima, à direita, clique em Implantar
+   (Deploy) e depois em Nova implantação (New deployment).
+3. Ao lado de “Selecionar tipo” (o ícone de engrenagem),
+   escolha “App da Web” (Web app).
+4. Preencha assim:
+     Descrição: Agenda do Studio
+     Executar como: Eu  (seu Gmail)
+     Quem tem acesso: Qualquer pessoa
+     (em inglês: Execute as: Me / Who has access: Anyone)
+5. Clique em Implantar.
+6. Na primeira vez, o Google pede autorização:
+     - Clique em Autorizar acesso.
+     - Escolha a conta do studio.
+     - Pode aparecer “Este app não foi verificado”.
+       Clique em “Avançado” e depois em
+       “Ir para Agenda Studio Vilela (não seguro)”.
+       Isso é normal: o app é o SEU, acabou de ser criado.
+     - Clique em Permitir.
+7. Vai aparecer uma “URL do app da Web”.
+   Copie essa URL inteira. Ela começa com:
+     https://script.google.com/macros/s/...
+   Guarde essa URL: é ela que o site usa.
+
+
+6. Cole a URL no site
+---------------------
+1. Abra o arquivo agenda-config.js da pasta do site.
+2. Ache esta linha:
+
+     var AGENDA_WEB_APP_URL = "";
+
+3. Cole a URL entre as aspas, assim:
+
+     var AGENDA_WEB_APP_URL = "https://script.google.com/macros/s/XXXX/exec";
+
+   (Troque XXXX pela URL de verdade que você copiou.
+   Deixe as aspas e o ponto e vírgula no lugar.)
+4. Salve o arquivo.
+5. Quem publica o site (ou o assistente) precisa subir
+   essa alteração na prévia. Depois disso, a agenda
+   deixa o modo demonstração e passa a usar a planilha.
+
+
+7. Teste
+--------
+1. Abra a página da agenda na prévia:
+     https://fannyloremberg.github.io/studio-vilela-previa/agenda.html
+2. Escolha Rafaela ou Jennyfer, digite a senha do estúdio
+   e entre.
+3. Crie um agendamento de teste (Nome: Teste, um serviço,
+   um dia e um horário).
+4. Confira se a linha apareceu na planilha “Agenda Studio Vilela”,
+   na aba chamada Agenda.
+5. Teste também o pedido pelo site: no fluxo da Vily, monte
+   um pedido e toque em “Enviar pedido no WhatsApp”.
+   O WhatsApp deve abrir normalmente. Na agenda, esse pedido
+   deve aparecer destacado como “Aguardando”, com os botões
+   Confirmar e Recusar.
+
+
+8. Como as meninas usam no dia a dia
+------------------------------------
+- O atalho fica no rodapé do site, bem discreto:
+  “Área do estúdio”. A agenda NÃO aparece no menu público.
+- Cada uma entra com o próprio nome (Rafaela ou Jennyfer)
+  e a senha do estúdio.
+- Dá para ver o dia ou a semana, incluir, editar e apagar
+  horários.
+- Cores: dourado para a Rafaela, rosé para a Jennyfer.
+- Quando uma cliente pede horário pelo site (botão
+  “Enviar pedido no WhatsApp”), o pedido também chega
+  na agenda com o status “Aguardando”.
+    • Confirmar: o horário entra como confirmado.
+      Antes de confirmar, dá para ajustar o horário.
+    • Recusar: o pedido sai da lista (fica marcado
+      na planilha como recusado, só para histórico).
+- Se a internet falhar na hora do pedido, o WhatsApp
+  abre do mesmo jeito. Nada trava para a cliente.
+
+
+9. Segurança, em linguagem simples
+----------------------------------
+- A senha NÃO está no site. Ela fica só no Google.
+- A página da agenda pede para os buscadores não
+  indexarem (não aparecer no Google). Mesmo assim,
+  não divulgue o link à toa.
+- “Qualquer pessoa” na publicação é necessário para
+  o site conseguir gravar o pedido. Sem a senha,
+  ninguém consegue ler, editar, confirmar ou apagar.
+  Só é possível enviar um pedido novo (o mesmo que
+  a cliente já manda no WhatsApp), com limite para
+  não encher a planilha.
+- Não compartilhe a senha do estúdio fora da equipe.
+- Não precisa compartilhar a planilha com as meninas
+  se elas usam só a página da agenda. O script roda
+  com a sua conta e já lê/escreve a planilha.
+
+
+10. Se precisar trocar a senha ou o código
+------------------------------------------
+- Trocar a senha: Apps Script > engrenagem >
+  Propriedades do script > altere o valor de SENHA >
+  Salvar. Não precisa publicar de novo.
+- Se alterar o arquivo Code.gs: cole o código novo,
+  salve, depois Implantar > Gerenciar implantações >
+  o lápis da implantação atual > “Nova versão” >
+  Implantar. A URL em geral continua a mesma.
+
+
+11. Se algo não funcionar
+-------------------------
+- “Senha incorreta”: confira se a propriedade se chama
+  exatamente SENHA e se você salvou depois de escrever.
+- A agenda continua em demonstração: a URL ainda não
+  foi colada em agenda-config.js, ou o site ainda não
+  foi atualizado com esse arquivo.
+- Pedido da Vily não aparece: confira se a URL está
+  no agenda-config.js, se a implantação é “Qualquer pessoa”
+  e se você autorizou o app (passo 5).
+- Tela de login do Google ao testar a URL: a implantação
+  não está como “Qualquer pessoa”, ou falta autorizar.
+- Planilha vazia: o script cria a aba “Agenda”
+  sozinho na primeira gravação.
+
+Qualquer dúvida, é só chamar.

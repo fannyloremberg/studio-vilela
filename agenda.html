@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agenda do Studio · Studio Vilela</title>
+<meta name="description" content="Agenda interna do Studio Vilela.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3a3a40">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261122-15">
+</head>
+<body class="agenda-pag">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo">
+  <a href="index.html" class="marca" aria-label="Studio Vilela, voltar ao site">
+    <img src="img/borboleta.webp" alt="" width="44" height="39">
+    <span><b>STUDIO</b> VILELA</span>
+  </a>
+  <a class="btn ouro mini-cta" href="index.html">Voltar ao site</a>
+</header>
+
+<main id="conteudo" class="agenda-main">
+  <p class="kicker">Área do estúdio</p>
+  <h1>Agenda do Studio</h1>
+
+  <div id="agenda-aviso" class="agenda-aviso" hidden></div>
+
+  <section id="tela-entrar" class="agenda-card agenda-entrar" aria-labelledby="entrar-titulo">
+    <h2 id="entrar-titulo">Entrar</h2>
+    <p class="sub">Escolha o seu nome e digite a senha do estúdio.</p>
+    <form id="form-entrar" novalidate>
+      <fieldset>
+        <legend>Quem está entrando?</legend>
+        <div class="agenda-quem">
+          <label class="agenda-quem-op">
+            <input type="radio" name="nome" value="Rafaela" required>
+            <span>Rafaela</span>
+          </label>
+          <label class="agenda-quem-op jen">
+            <input type="radio" name="nome" value="Jennyfer" required>
+            <span>Jennyfer</span>
+          </label>
+        </div>
+      </fieldset>
+      <label for="senha">Senha do estúdio</label>
+      <input id="senha" name="senha" type="password" autocomplete="current-password" required minlength="2" maxlength="80">
+      <p id="entrar-erro" class="agenda-erro" hidden></p>
+      <button type="submit" class="btn ouro" id="btn-entrar">Entrar</button>
+    </form>
+  </section>
+
+  <section id="tela-agenda" hidden>
+    <div class="agenda-barra">
+      <p class="agenda-ola">Olá, <strong id="nome-sessao"></strong></p>
+      <div class="agenda-barra-acoes">
+        <button type="button" class="btn ouro mini-cta" id="btn-novo">Novo agendamento</button>
+        <button type="button" class="agenda-sair" id="btn-sair">Sair</button>
+      </div>
+    </div>
+
+    <div class="agenda-legendas" aria-label="Cores por profissional">
+      <span class="agenda-leg raf">Rafaela</span>
+      <span class="agenda-leg jen">Jennyfer</span>
+      <span class="agenda-leg agd">Aguardando confirmação</span>
+    </div>
+
+    <div class="agenda-nav">
+      <div class="agenda-vistas" role="tablist" aria-label="Ver por">
+        <button type="button" id="vista-dia" aria-pressed="false">Dia</button>
+        <button type="button" id="vista-semana" aria-pressed="true">Semana</button>
+      </div>
+      <div class="agenda-periodo">
+        <button type="button" id="nav-ant" aria-label="Período anterior">◀</button>
+        <p id="periodo-titulo"></p>
+        <button type="button" id="nav-prox" aria-label="Próximo período">▶</button>
+      </div>
+      <button type="button" class="agenda-hoje" id="nav-hoje">Hoje</button>
+    </div>
+
+    <div id="lista-agenda" class="agenda-lista" aria-live="polite"></div>
+  </section>
+</main>
+
+<dialog id="dlg-form" class="agenda-dlg" aria-labelledby="dlg-titulo">
+  <form id="form-agendamento" method="dialog" novalidate>
+    <h2 id="dlg-titulo">Novo agendamento</h2>
+    <input type="hidden" name="id" id="ag-id">
+    <label for="ag-cliente">Nome da cliente</label>
+    <input id="ag-cliente" name="cliente" type="text" maxlength="80" required autocomplete="name">
+    <label for="ag-servico">Serviço</label>
+    <input id="ag-servico" name="servico" type="text" list="lista-servicos" maxlength="80" required>
+    <datalist id="lista-servicos">
+      <option value="Unhas">
+      <option value="Curso de manicure">
+      <option value="Maquiagem">
+      <option value="Sobrancelha">
+      <option value="Cílios">
+      <option value="Tranças">
+      <option value="Casamento/Evento">
+    </datalist>
+    <label for="ag-prof">Profissional</label>
+    <select id="ag-prof" name="profissional" required>
+      <option value="Rafaela">Rafaela</option>
+      <option value="Jennyfer">Jennyfer</option>
+    </select>
+    <label for="ag-data">Dia</label>
+    <input id="ag-data" name="data" type="date" required>
+    <label for="ag-horario">Horário</label>
+    <input id="ag-horario" name="horario" type="time">
+    <fieldset class="agenda-periodos">
+      <legend>Período (se ainda não tiver horário certo)</legend>
+      <label><input type="radio" name="periodo" value=""> Sem período</label>
+      <label><input type="radio" name="periodo" value="Manhã"> Manhã</label>
+      <label><input type="radio" name="periodo" value="Tarde"> Tarde</label>
+      <label><input type="radio" name="periodo" value="Noite"> Noite</label>
+    </fieldset>
+    <label for="ag-status">Status</label>
+    <select id="ag-status" name="status">
+      <option value="confirmado">Confirmado</option>
+      <option value="aguardando">Aguardando</option>
+    </select>
+    <label for="ag-obs">Observação (opcional)</label>
+    <textarea id="ag-obs" name="obs" maxlength="400" rows="3"></textarea>
+    <p id="form-erro" class="agenda-erro" hidden></p>
+    <div class="agenda-dlg-acoes">
+      <button type="submit" class="btn ouro" id="btn-salvar" value="salvar">Salvar</button>
+      <button type="button" class="agenda-sair" id="btn-cancelar" value="cancelar">Cancelar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-confirmar" class="agenda-dlg" aria-labelledby="conf-titulo">
+  <form id="form-confirmar" method="dialog" novalidate>
+    <h2 id="conf-titulo">Confirmar horário</h2>
+    <p id="conf-resumo" class="sub"></p>
+    <label for="conf-data">Dia</label>
+    <input id="conf-data" name="data" type="date" required>
+    <label for="conf-horario">Horário (pode ajustar)</label>
+    <input id="conf-horario" name="horario" type="time">
+    <fieldset class="agenda-periodos">
+      <legend>Período</legend>
+      <label><input type="radio" name="periodo" value=""> Sem período</label>
+      <label><input type="radio" name="periodo" value="Manhã"> Manhã</label>
+      <label><input type="radio" name="periodo" value="Tarde"> Tarde</label>
+      <label><input type="radio" name="periodo" value="Noite"> Noite</label>
+    </fieldset>
+    <p id="conf-erro" class="agenda-erro" hidden></p>
+    <div class="agenda-dlg-acoes">
+      <button type="submit" class="btn ouro">Confirmar</button>
+      <button type="button" class="agenda-sair" id="btn-conf-cancelar">Cancelar</button>
+    </div>
+  </form>
+</dialog>
+
+<footer>
+  <img src="img/borboleta.webp" alt="" width="70">
+  <p class="f-marca">STUDIO VILELA</p>
+  <p><em>Olhar, beleza e expressão.</em></p>
+  <p><a href="index.html">Voltar ao site</a></p>
+  <p class="mini">© 2026 Studio Vilela · Área interna, não listada no menu público</p>
+</footer>
+<script src="agenda-config.js?v=20261122-15"></script>
+<script src="agenda.js?v=20261122-15"></script>
+</body>
+</html>

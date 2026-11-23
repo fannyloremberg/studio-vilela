@@ -165,6 +165,12 @@ function msgPedido(){
  linhas.push("","Quando você puder, me confirma se esse dia e horário ficam bons, e também o valor, tá bem? Obrigada! 💛");
  return linhas.join("\n");
 }
+function agendaUrl(){return (typeof AGENDA_WEB_APP_URL==="string"&&AGENDA_WEB_APP_URL.trim())?AGENDA_WEB_APP_URL.trim():""}
+function enviarPedidoPendente(){
+ var url=agendaUrl();if(!url||!ped||!ped.servico)return;
+ var corpo={acao:"pedido",nome:ped.nome,cliente:ped.nome,servico:ped.servico.nome,profissional:profNome(),data:ped.data,periodo:ped.periodo||"",horario:ped.hora||"",obs:ped.obs||""};
+ try{fetch(url,{method:"POST",mode:"cors",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(corpo)}).catch(function(){})}catch(e){}
+}
 function listaServicosPed(){return SERVICOS_PED.filter(function(s){if(ped.filtroQuem==="raf")return s.quem==="raf"||!s.quem;if(ped.filtroQuem==="jen")return s.quem==="jen"||!s.quem;return true})}
 function iniciarPedido(pre){
  ped={servico:null,nome:"",data:"",periodo:"",hora:"",obs:"",quem:null,filtroQuem:null};
@@ -233,6 +239,7 @@ function renderPedido(){
   bx.appendChild(box);
   var fixo=document.createElement("div");fixo.className="fp-envio-fixo";
   var env=document.createElement("a");env.className="wa wa-envio";env.target="_blank";env.rel="noopener";env.href=wa(msgPedido(),ped.quem==="jen"?WA_JEN:WA);env.textContent="Enviar pedido no WhatsApp";
+  env.addEventListener("click",function(){enviarPedidoPendente()});
   var back=document.createElement("button");back.type="button";back.textContent="← Voltar";back.addEventListener("click",voltarPedido);
   fixo.appendChild(env);fixo.appendChild(back);bx.appendChild(fixo);
  }

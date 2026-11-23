@@ -14,6 +14,7 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 - Galeria com lightbox, FAQ, depoimentos (modelo), faixa de chamada, animações de entrada.
 - `prefers-reduced-motion`: sem vídeo (só pôster), sem brilhos, sem borboletas voando e sem animações.
 - Nas seções claras, algumas borboletas douradas (no estilo do logo) voam devagar atrás do conteúdo. Não aparecem no hero, no bloco escuro de agendar nem no rodapé. Menos no celular; pausam com a aba oculta.
+- **Agenda do Studio** (`agenda.html`): área interna, fora do menu público (`noindex`). Entrada com o nome (Rafaela ou Jennyfer) e a senha do estúdio, verificada no Google Apps Script (nunca no site). Liga a uma planilha no Google. Enquanto a URL em `agenda-config.js` estiver vazia, a página roda em modo demonstração (senha de exemplo: `demo`). O passo a passo está em `GUIA-AGENDA.txt`. Pedidos feitos no fluxo da Vily (“Enviar pedido no WhatsApp”) também são gravados como “Aguardando”, com botões Confirmar e Recusar; se o envio à planilha falhar, o WhatsApp abre normalmente.
 
 ## Imagens
 - Borboleta dourada (`img/borboleta.webp`) e fadinha Vily (`img/fada.webp`, `img/fada-avatar.webp`): arte original gerada para este projeto, recortada com fundo transparente.
