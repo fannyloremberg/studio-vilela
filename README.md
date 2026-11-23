@@ -25,6 +25,6 @@ Vídeos do hero: Artem Podrez — https://www.pexels.com/video/4783390/ ; Pavel 
 
 Horário: terça a sábado somente com hora marcada; domingo e segunda fechado.
 
-Pagamento: aceita dinheiro. Duração: de 20 min a 3h30, ou mais, conforme o procedimento. Casamentos e eventos: com hora marcada, confirmar antes com as profissionais.
+Pagamento: aceita dinheiro, Pix e cartão. Duração: de 20 min a 3h30, ou mais, conforme o procedimento. Casamentos e eventos: com hora marcada, confirmar antes com as profissionais.
 
 Galeria: 7 fotos reais de trabalhos do studio (`img/trabalhos/`, do Instagram @studiovvilela_, enviadas pela família), exibidas em tamanho pequeno/médio.
