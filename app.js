@@ -159,9 +159,9 @@ function quandoPed(){var p=ped.periodo||"",h=fmtHora(ped.hora);if(p&&h)return p+
 function errData(v){var d=parseISO(v);if(!d)return "Escolha um dia, por favor.";if(d<hojeZero())return "Escolha um dia a partir de hoje, de terça a sábado.";if(d.getDay()===0||d.getDay()===1)return "O studio fecha domingo e segunda. Escolha um dia de terça a sábado, por favor.";return ""}
 function profNome(){return ped.quem==="jen"?"Jennyfer":"Rafaela"}
 function msgPedido(){
- var linhas=["Olá, "+profNome()+"! Tudo bem?","","Meu nome é "+ped.nome+". Vim pelo site do Studio Vilela e gostaria de fazer um pedido de agendamento.","","Serviço: "+ped.servico.nome,"Dia de preferência: "+fmtData(ped.data),"Período/horário de preferência: "+quandoPed()];
+ var linhas=["Oi, "+profNome()+"! 🦋","","Meu nome é "+ped.nome+". Vim pelo site do Studio Vilela e queria agendar um horário com você.","","Serviço: "+ped.servico.nome,"Dia de preferência: "+fmtData(ped.data),"Período/horário de preferência: "+quandoPed()];
  if(ped.obs)linhas.push("Observação: "+ped.obs);
- linhas.push("","É apenas um pedido de agendamento: peço que você confirme se esse dia e horário estão disponíveis, e também o valor, por favor. Obrigada!");
+ linhas.push("","Quando você puder, me confirma se esse dia e horário ficam bons, e também o valor, tá bem? Obrigada! 💛");
  return linhas.join("\n");
 }
 function listaServicosPed(){return SERVICOS_PED.filter(function(s){if(ped.filtroQuem==="raf")return s.quem==="raf"||!s.quem;if(ped.filtroQuem==="jen")return s.quem==="jen"||!s.quem;return true})}
@@ -192,7 +192,7 @@ function txtPassoPedido(){
  if(pedPasso==="data")return "Qual dia você prefere? Atendemos de terça a sábado; domingo e segunda o studio está fechado.";
  if(pedPasso==="periodo")return "Prefere manhã, tarde ou noite? Se quiser, pode indicar também um horário.";
  if(pedPasso==="obs")return "Quer deixar algum recado? É opcional.";
- return "Confira o pedido e envie no WhatsApp da "+profNome()+". É só um pedido: ela confirma o horário e o valor.";
+ return "Prontinho! 🦋 Seu pedido de horário vai chegar com carinho pra "+profNome()+". Assim que ela ver, ela te responde pra confirmar o horário e o valor, tá bom? 💛";
 }
 function nPasso(){var s=["servico","quem","nome","data","periodo","obs","resumo"];if(ped.servico&&ped.servico.quem)s=s.filter(function(x){return x!=="quem"});return {i:s.indexOf(pedPasso)+1,n:s.length}}
 function renderPedido(){
@@ -226,7 +226,7 @@ function renderPedido(){
   bx.appendChild(formPedido('<label for="ped-obs">Recado (opcional)</label><textarea id="ped-obs" name="obs" maxlength="400" placeholder="Algum detalhe que a profissional deva saber?"></textarea>',function(fd){ped.obs=String(fd.get("obs")||"").replace(/\s+/g," ").trim();pedPasso="resumo";renderPedido()},function(form){if(ped.obs)form.querySelector("#ped-obs").value=ped.obs}, "Pular e ver resumo"));
  }else if(pedPasso==="resumo"){
   var box=document.createElement("div");box.className="fp-resumo";
-  box.innerHTML="<dl><dt>Serviço</dt><dd></dd><dt>Nome</dt><dd></dd><dt>Dia</dt><dd></dd><dt>Período/horário</dt><dd></dd>"+(ped.obs?"<dt>Recado</dt><dd></dd>":"")+"<dt>Profissional</dt><dd></dd></dl><p class=\"fp-nota\">Isto é um pedido de agendamento. A profissional confirma o horário e o valor.</p>";
+  box.innerHTML="<dl><dt>Serviço</dt><dd></dd><dt>Nome</dt><dd></dd><dt>Dia</dt><dd></dd><dt>Período/horário</dt><dd></dd>"+(ped.obs?"<dt>Recado</dt><dd></dd>":"")+"<dt>Profissional</dt><dd></dd></dl><p class=\"fp-nota\">Assim que ela ver, ela te responde pra confirmar o horário e o valor, tá bom? 💛</p>";
   var dds=box.querySelectorAll("dd"),vals=[ped.servico.nome,ped.nome,fmtData(ped.data),quandoPed()].concat(ped.obs?[ped.obs]:[]).concat([profNome()+" Vilela"]);
   dds.forEach(function(dd,i){dd.textContent=vals[i]});
   bx.appendChild(box);
