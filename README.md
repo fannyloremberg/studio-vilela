@@ -20,7 +20,7 @@ Endereço (confirmado): R. Padre Marçal, 112 - Centro, São Roque - SP, CEP 181
 - `logo-foto.jpg`: foto do logo do studio (enviada pela família).
 
 ## Créditos (Pexels, licença livre — https://www.pexels.com/license/)
-Fotos: Natalie Bond (29185853, unhas — card de serviço), Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Speak Media Uganda (37600595, tranças — card de serviço), Valdans Media (30589139).
+Fotos: cottonbro studio (6940364, unhas — card de serviço), Shiny Diamond (3762664, sobrancelha — card de serviço), Nataliya Vaitkevich (5128220, cílios), Vladimir Konoplev (11813961, tranças — card de serviço), Valdans Media (30589139).
 Vídeos do hero: Artem Podrez — https://www.pexels.com/video/4783390/ ; Pavel Danilyuk — https://www.pexels.com/video/4855852/ ; Kaboompics — https://www.pexels.com/video/7311589/ . Recortados, sem áudio e sem texto na tela.
 
 Horário: terça a sábado somente com hora marcada; domingo e segunda fechado.
