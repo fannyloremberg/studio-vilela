@@ -7,7 +7,7 @@
   var LS_KEY = "sv-agenda-demo";
   var SS_NOME = "sv-agenda-nome";
   var SS_TOKEN = "sv-agenda-token";
-  var SERVICOS = ["Unhas", "Curso de manicure", "Maquiagem", "Sobrancelha", "Cílios", "Tranças", "Casamento/Evento"];
+  var SERVICOS = ["Unhas", "Unhas: Pé", "Unhas: Mão", "Unhas: Pé e mão", "Unhas: Esmaltação em gel", "Unhas: Banho de gel", "Unhas: Blindagem", "Unhas: Pedicure em gel", "Unhas: Spa dos pés", "Curso de manicure", "Maquiagem", "Sobrancelha", "Cílios", "Casamento/Evento"];
 
   var sessao = { nome: "", token: "" };
   var vista = "semana";
@@ -109,7 +109,7 @@
     return [
       { id: "ex-1", data: isoLocal(ter), horario: "10:00", periodo: "Manhã", cliente: "Ana (exemplo)", servico: "Unhas", profissional: "Rafaela", status: "confirmado", obs: "Exemplo de horário confirmado." },
       { id: "ex-2", data: isoLocal(ter), horario: "14:30", periodo: "Tarde", cliente: "Beatriz (exemplo)", servico: "Sobrancelha", profissional: "Jennyfer", status: "confirmado", obs: "" },
-      { id: "ex-3", data: isoLocal(qua), horario: "", periodo: "Tarde", cliente: "Camila (exemplo)", servico: "Tranças", profissional: "Jennyfer", status: "aguardando", obs: "Pedido enviado pelo site. Exemplo." },
+      { id: "ex-3", data: isoLocal(qua), horario: "", periodo: "Tarde", cliente: "Camila (exemplo)", servico: "Cílios", profissional: "Jennyfer", status: "aguardando", obs: "Pedido enviado pelo site. Exemplo." },
       { id: "ex-4", data: isoLocal(qui), horario: "09:30", periodo: "Manhã", cliente: "Daniela (exemplo)", servico: "Maquiagem", profissional: "Rafaela", status: "aguardando", obs: "Pedido de exemplo, aguardando confirmação." }
     ];
   }
